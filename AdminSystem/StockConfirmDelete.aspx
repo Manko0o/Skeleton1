@@ -7,6 +7,7 @@
     <title></title>
 </head>
 <body>
+	this is StockManagement
     <form id="form1" runat="server">
         <div>
         </div>
