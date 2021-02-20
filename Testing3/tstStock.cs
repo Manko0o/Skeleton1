@@ -13,5 +13,14 @@ namespace Testing3
             clsStock AStock = new clsStock();
             Assert.IsNotNull(AStock);
         }
+         [TestMethod]
+        public void AvailableOK() {
+            clsStock AStock = new clsStock();
+        bool TestData = true;
+        AStock.Available = TestData;
+            Assert.AreEqual(AStock.Available, false); 
+
+        }
+        
     }
 }
