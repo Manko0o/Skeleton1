@@ -14,11 +14,11 @@ namespace Testing3
             Assert.IsNotNull(AStock);
         }
          [TestMethod]
-        public void AvailableOK() {
+        public void AvailablePropertyOK() {
             clsStock AStock = new clsStock();
         bool TestData = true;
         AStock.Available = TestData;
-            Assert.AreEqual(AStock.Available, false); 
+            Assert.AreEqual(AStock.Available, TestData); 
 
         }
         
