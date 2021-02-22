@@ -8,7 +8,35 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
+        <div style="height: 378px">
+            <asp:Label ID="lblStaffID" runat="server" Text="StaffID" width="92px"></asp:Label>
+&nbsp;<asp:TextBox ID="txtStaffID" runat="server" Height="22px" TextMode="Number"></asp:TextBox>
+            <br />
+            <br />
+            <asp:Label ID="lblName" runat="server" Text="Name" width="92px"></asp:Label>
+&nbsp;<asp:TextBox ID="txtName" runat="server"></asp:TextBox>
+            <br />
+            <br />
+            <asp:Label ID="lblSurname" runat="server" Text="Surname" width="92px"></asp:Label>
+&nbsp;<asp:TextBox ID="txtSurname" runat="server"></asp:TextBox>
+            <br />
+            <br />
+            <asp:Label ID="lblDob" runat="server" Text="Date of birth" width="92px"></asp:Label>
+&nbsp;<asp:TextBox ID="txtDob" runat="server" TextMode="DateTime"></asp:TextBox>
+            <br />
+            <br />
+            <asp:Label ID="lblPhoneNumber" runat="server" Text="Phone Number"></asp:Label>
+&nbsp;<asp:TextBox ID="txtPhoneNumber" runat="server"></asp:TextBox>
+            <br />
+            <br />
+&nbsp;<asp:CheckBox ID="chkAvailability" runat="server" Text="Available" />
+            <br />
+            <br />
+            <asp:Label ID="lblError" runat="server"></asp:Label>
+            <br />
+            <br />
+            <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" Text="OK" />
+&nbsp;<asp:Button ID="btnCancel" runat="server" Text="Cancel" />
         </div>
     </form>
 </body>
