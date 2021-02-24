@@ -18,7 +18,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
         clsStock AStock = new clsStock();
 
-        AStock.ProductId = int.Parse(txtProductID.Text);
+        AStock.ProductID = int.Parse(txtProductID.Text);
         AStock.BookName = txtBookName.Text;
         AStock.AuthorName = txtAuthorName.Text;
         AStock.Price = float.Parse(txtPrice.Text);

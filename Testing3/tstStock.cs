@@ -15,11 +15,12 @@ namespace Testing3
         }
 
         [TestMethod]
-        public void AvailablePropertyOK() {
+        public void AvailablePropertyOK()
+        {
             clsStock AStock = new clsStock();
             bool TestData = true;
             AStock.Available = TestData;
-            Assert.AreEqual(AStock.Available, TestData); 
+            Assert.AreEqual(AStock.Available, TestData);
         }
 
         [TestMethod]
@@ -27,8 +28,8 @@ namespace Testing3
         {
             clsStock AStock = new clsStock();
             int TestData = 1;
-            AStock.ProductId = TestData;
-            Assert.AreEqual(AStock.ProductId, TestData);
+            AStock.ProductID = TestData;
+            Assert.AreEqual(AStock.ProductID, TestData);
         }
 
         [TestMethod]
@@ -67,5 +68,146 @@ namespace Testing3
             Assert.AreEqual(AStock.Type, TestData);
         }
 
+        [TestMethod]
+        public void FindMethodOK()
+        {
+            //create an instance of the class we want to create
+            clsStock AStock = new clsStock();
+            Boolean Found = false;
+            Int32 ProductID = 1122;
+            Found = AStock.Find(ProductID);
+            Assert.IsTrue(Found);
+        }
+
+        [TestMethod]
+        public void TestProductIDFound()
+        {
+            //create an instance of the class we want to create
+            clsStock AStock = new clsStock();
+            //Bolean variable to store the results of the validation
+            Boolean Found = false;
+            //boolean variable to record if data is OK 
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 ProductID = 11223344;
+            //invoke the methods
+            Found = AStock.Find(ProductID);
+            //check the Product 
+            if (AStock.ProductID != 11223344)
+            {
+                OK = false;
+            }
+            //test to see if the result is true
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestBookNameFound()
+        {
+            //create an instance of the class we want to create
+            clsStock AStock = new clsStock();
+            //Bolean variable to store the results of the validation
+            Boolean Found = false;
+            //boolean variable to record if data is OK (assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 ProductID = 11223344;
+            //invoke the methods
+            Found = AStock.Find(ProductID);
+            //check the StaffID 
+            if (AStock.BookName != "Unfinished")
+            {
+                OK = false;
+            }
+            //test to see if the result is true
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestAuthorNameFound()
+        {
+            //create an instance of the class we want to create
+            clsStock AStock = new clsStock();
+            //Bolean variable to store the results of the validation
+            Boolean Found = false;
+            //boolean variable to record if data is OK (assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 ProductID = 11223344;
+            //invoke the methods
+            Found = AStock.Find(ProductID);
+            //check the StaffID 
+            if (AStock.AuthorName != "Priyanka")
+            {
+                OK = false;
+            }
+            //test to see if the result is true
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestAvailableFound()
+        {
+            //create an instance of the class we want to create
+            clsStock AStock = new clsStock();
+            //Bolean variable to store the results of the validation
+            Boolean Found = false;
+            //boolean variable to record if data is OK (assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 ProductID = 11223344;
+            //invoke the methods
+            Found = AStock.Find(ProductID);
+            //check the StaffID 
+            if (AStock.Available != true)
+            {
+                OK = false;
+            }
+            //test to see if the result is true
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void PriceFound()
+        {
+            //create an instance of the class we want to create
+            clsStock AStock = new clsStock();
+            //Bolean variable to store the results of the validation
+            Boolean Found = false;
+            //boolean variable to record if data is OK (assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 ProductID = 11223344;
+            //invoke the methods
+            Found = AStock.Find(ProductID);
+            //check the StaffID 
+            if (AStock.Price != 10.20F)
+            {
+                OK = false;
+            }
+            //test to see if the result is true
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TypeFound()
+        {
+            //create an instance of the class we want to create
+            clsStock AStock = new clsStock();
+            //Bolean variable to store the results of the validation
+            Boolean Found = false;
+            //boolean variable to record if data is OK (assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 ProductID = 11223344;
+            //invoke the methods
+            Found = AStock.Find(ProductID);
+            //check the StaffID 
+            if (AStock.Type != "Biography")
+            {
+                OK = false;
+            }
+            //test to see if the result is true
+            Assert.IsTrue(OK);
+        }
     }
 }
+
