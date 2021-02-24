@@ -12,7 +12,7 @@ public partial class _1Viewer : System.Web.UI.Page
     {
         clsStock AStock = new clsStock();
         AStock = (clsStock)Session["AStock"];
-        Response.Write(AStock.ProductId);
+        Response.Write(AStock.ProductID);
         Response.Write(AStock.BookName);
         Response.Write(AStock.AuthorName);
         Response.Write(AStock.Price);
