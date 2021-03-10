@@ -18,12 +18,12 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
         clsStock AStock = new clsStock();
 
-        AStock.ProductID = int.Parse(txtProductID.Text);
+        AStock.ProductID = Convert.ToInt32(txtProductID.Text);
         AStock.BookName = txtBookName.Text;
         AStock.AuthorName = txtAuthorName.Text;
-        AStock.Price = float.Parse(txtPrice.Text);
-        AStock.Type = txtType.Text;
-      //  AStock.Available = bool.Parse(chkAvailable.Text);
+        AStock.Price = Convert.ToDouble(txtPrice.Text);
+        AStock.PublishDate = Convert.ToDateTime("09/02/2021");
+        //  AStock.Available = bool.Parse(chkAvailable.Text);
 
         Session["AStock"] = AStock;
 
