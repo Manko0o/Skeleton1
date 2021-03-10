@@ -122,6 +122,11 @@ public class clsDataConnection
         }
     }
 
+    internal void AddParameter(int productID1, int productID2)
+    {
+        throw new NotImplementedException();
+    }
+
     private string TrimPath(string OldPath)
     {
         Int32 Posn = 0;

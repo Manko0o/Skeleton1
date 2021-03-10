@@ -27,7 +27,7 @@ namespace Testing3
         public void ProductIdPropertyOK()
         {
             clsStock AStock = new clsStock();
-            int TestData = 1;
+            Int32 TestData = 1;
             AStock.ProductID = TestData;
             Assert.AreEqual(AStock.ProductID, TestData);
         }
@@ -36,7 +36,7 @@ namespace Testing3
         public void BookNamePropertyOK()
         {
             clsStock AStock = new clsStock();
-            String TestData = "Chicken";
+            string TestData = "Unfinished";
             AStock.BookName = TestData;
             Assert.AreEqual(AStock.BookName, TestData);
         }
@@ -45,7 +45,7 @@ namespace Testing3
         public void AuthorNamePropertyOK()
         {
             clsStock AStock = new clsStock();
-            String TestData = "KFC";
+            string TestData = "Priyanka Chopra";
             AStock.AuthorName = TestData;
             Assert.AreEqual(AStock.AuthorName, TestData);
         }
@@ -54,18 +54,18 @@ namespace Testing3
         public void PricePropertyOK()
         {
             clsStock AStock = new clsStock();
-            float TestData = 1.20F;
+            double TestData = 11;
             AStock.Price = TestData;
             Assert.AreEqual(AStock.Price, TestData);
         }
 
         [TestMethod]
-        public void TypePropertyOK()
+        public void PublishedDateOK()
         {
             clsStock AStock = new clsStock();
-            String TestData = "Lemon";
-            AStock.Type = TestData;
-            Assert.AreEqual(AStock.Type, TestData);
+            DateTime TestData = Convert.ToDateTime("09/02/2021");
+            AStock.PublishDate = TestData;
+            Assert.AreEqual(AStock.PublishDate, TestData);
         }
 
         [TestMethod]
@@ -74,7 +74,7 @@ namespace Testing3
             //create an instance of the class we want to create
             clsStock AStock = new clsStock();
             Boolean Found = false;
-            Int32 ProductID = 1122;
+            Int32 ProductID = 1;
             Found = AStock.Find(ProductID);
             Assert.IsTrue(Found);
         }
@@ -89,11 +89,11 @@ namespace Testing3
             //boolean variable to record if data is OK 
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 ProductID = 11223344;
+            Int32 ProductID = 1;
             //invoke the methods
             Found = AStock.Find(ProductID);
             //check the Product 
-            if (AStock.ProductID != 11223344)
+            if (AStock.ProductID != 1)
             {
                 OK = false;
             }
@@ -111,7 +111,7 @@ namespace Testing3
             //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 ProductID = 11223344;
+            Int32 ProductID = 1;
             //invoke the methods
             Found = AStock.Find(ProductID);
             //check the StaffID 
@@ -132,11 +132,11 @@ namespace Testing3
             //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 ProductID = 11223344;
+            Int32 ProductID = 1;
             //invoke the methods
             Found = AStock.Find(ProductID);
             //check the StaffID 
-            if (AStock.AuthorName != "Priyanka")
+            if (AStock.AuthorName != "Priyanka Chopra")
             {
                 OK = false;
             }
@@ -153,7 +153,7 @@ namespace Testing3
             //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 ProductID = 11223344;
+            Int32 ProductID = 1;
             //invoke the methods
             Found = AStock.Find(ProductID);
             //check the StaffID 
@@ -175,11 +175,11 @@ namespace Testing3
             //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 ProductID = 11223344;
+            Int32 ProductID = 1;
             //invoke the methods
             Found = AStock.Find(ProductID);
             //check the StaffID 
-            if (AStock.Price != 10.20F)
+            if (AStock.Price != 11)
             {
                 OK = false;
             }
@@ -188,7 +188,7 @@ namespace Testing3
         }
 
         [TestMethod]
-        public void TypeFound()
+        public void PublishDateFound()
         {
             //create an instance of the class we want to create
             clsStock AStock = new clsStock();
@@ -197,11 +197,11 @@ namespace Testing3
             //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 ProductID = 11223344;
+            Int32 ProductID = 1;
             //invoke the methods
             Found = AStock.Find(ProductID);
             //check the StaffID 
-            if (AStock.Type != "Biography")
+            if (AStock.PublishDate != Convert.ToDateTime("09/02/2021"))
             {
                 OK = false;
             }

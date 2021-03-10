@@ -2,16 +2,16 @@
 
 namespace ClassLibrary
 {
-    
+
     public class clsStock
     {
         private Int32 mProductID;
         private string mBookName;
         private string mAuthorName;
         private bool mAvailable;
-        private float mPrice;
-        private string mType;
-        
+        private double mPrice;
+        private DateTime mPublishDate;
+
 
         public Int32 ProductID
         {
@@ -28,14 +28,16 @@ namespace ClassLibrary
         }
         public string BookName
         {
-            get { return mBookName;
+            get
+            {
+                return mBookName;
             }
             set
             {
                 mBookName = value;
             }
         }
-         public string AuthorName
+        public string AuthorName
         {
             get
             {
@@ -57,7 +59,7 @@ namespace ClassLibrary
                 mAvailable = value;
             }
         }
-        public float Price
+        public double Price
         {
             get
             {
@@ -68,34 +70,45 @@ namespace ClassLibrary
                 mPrice = value;
             }
         }
-       
-        public string Type
+
+        public DateTime PublishDate
         {
             get
             {
-                return mType;
+                return mPublishDate;
             }
             set
             {
-                mType = value;
+                mPublishDate = value;
             }
         }
 
-        
 
-        public bool Find(int productID)
+
+
+        public bool Find(int ProductID)
         {
-            //set the private data members to the test data value
-            mProductID = 11223344;
-            mBookName = "Unfinished";
-            mAuthorName = "Priyanka";
-            mAvailable = true;
-            mPrice = 10.20F;
-            mType = "Biography";
-            //always return true
-            return true;
-            //throw new NotImplementedException();
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@ProductID", ProductID);
+            DB.Execute("sproc_tblStock_FilterByProductID");
+            if (DB.Count == 1)
+            {
+                //set the private data members to the test data value
+                mProductID = Convert.ToInt32(DB.DataTable.Rows[0]["ProductID"]);
+                mBookName = Convert.ToString(DB.DataTable.Rows[0]["BookName"]); 
+                mAuthorName = Convert.ToString(DB.DataTable.Rows[0]["AuthorName"]);
+                mAvailable = Convert.ToBoolean(DB.DataTable.Rows[0]["Available"]);
+                mPrice =  Convert.ToDouble(DB.DataTable.Rows[0]["Price"]);
+                mPublishDate = Convert.ToDateTime(DB.DataTable.Rows[0]["PublishDate"]);
+                //always return true
+                return true;
+                //throw new NotImplementedException();
+            }
+            else
+            {
+                return false;
+            }
+
         }
-        
     }
-  }
+}
