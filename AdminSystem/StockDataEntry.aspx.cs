@@ -35,4 +35,29 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
 
     }
+
+    protected void btnFind_Click(object sender, EventArgs e)
+    {
+        //created an instance of the address class
+        clsStock AStock = new clsStock();
+        //variable to store the primary key
+        Int32 ProductID;
+        //variable to tore the results of the find operation
+        Boolean Found = false;
+        //get the primary key entered by the user
+        ProductID = Convert.ToInt32(txtProductID.Text);
+        //find the record
+        Found = AStock.Find(ProductID);
+        //if found
+        if (Found == true)
+        {
+            //display the values of the properties in the form
+            txtBookName.Text = AStock.BookName;
+            txtAuthorName.Text = AStock.AuthorName;
+            txtPrice.Text = AStock.Price.ToString();
+            txtPublishedDate.Text = AStock.PublishDate.ToString();
+        }
+
+
+    }
 }
