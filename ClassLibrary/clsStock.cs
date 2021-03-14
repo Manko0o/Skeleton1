@@ -110,5 +110,10 @@ namespace ClassLibrary
             }
 
         }
+
+        public string Valid(string bookName, string authorName, string price, string publishDate)
+        {
+            return"";
+        }
     }
 }
