@@ -68,18 +68,18 @@ namespace ClassLibrary
         }
 
 
-        private int mOrderId;
+        private int mOrderNo;
 
 
-        public int OrderId
+        public int OrderNo
         {
             get
             {
-                return mOrderId;
+                return mOrderNo;
             }
             set
             {
-                mOrderId = value;
+                mOrderNo = value;
             }
         }
 
@@ -108,13 +108,28 @@ namespace ClassLibrary
 
         public bool Find(int Quantity)
         {
-            mQuantity = 10;
-            mOrderDate = Convert.ToDateTime("15/02/2021");
-            mBookName = "Amazing Book";
-            mPrice = 1.5;
-            mOrderId = 1;
-            mDispatched = true;
-            return true;
+            //create an instance of the data connection
+            clsDataConnection DB = new clsDataConnection();
+            //add the parameter for the Quantity we are searching for
+            DB.AddParameter("@Quantity", Quantity);
+            //below code then executes the stored procedure
+            DB.Execute("sproc_tblOrderProcessing_FilterByQuantity");
+            //if one record is found (there should be one or zero)
+            if (DB.Count == 1)
+            {
+                mQuantity = Convert.ToInt32(DB.DataTable.Rows[0]["OrderNo"]);
+                mOrderDate = Convert.ToDateTime(DB.DataTable.Rows[0]["OrderDate"]);
+                mBookName = Convert.ToString(DB.DataTable.Rows[0]["BookName"]);
+                mPrice = Convert.ToDouble(DB.DataTable.Rows[0]["Price"]);
+                mOrderNo = Convert.ToInt32(DB.DataTable.Rows[0]["OrderNo"]);
+                mDispatched = Convert.ToBoolean(DB.DataTable.Rows[0]["Dispatched"]);
+                //return to signify that everything worked OK
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
