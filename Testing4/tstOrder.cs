@@ -9,16 +9,16 @@ namespace Testing4
     {
 
         [TestMethod]
-        public void OrderIdPropertyOK()
+        public void OrderNoPropertyOK()
         {
             //create an instance of the class we want to create
             clsOrder AnOrder = new clsOrder();
             //create some test data to assign to the property
             Int32 TestData = 1;
             //assign the data to the property
-            AnOrder.OrderId = TestData;
+            AnOrder.OrderNo = TestData;
             //test to see that the two values are the same
-            Assert.AreEqual(AnOrder.OrderId, TestData);
+            Assert.AreEqual(AnOrder.OrderNo, TestData);
         }
 
 
@@ -38,7 +38,7 @@ namespace Testing4
             //create an instance of the class we want to create
             clsOrder AnOrder = new clsOrder();
             //create some test data to assign to the property
-            string TestData = "Harry Potter";
+            string TestData = "A Life Without Degree";
             //assign the data to the property
             AnOrder.BookName = TestData;
             //test to see that the two values are the same
@@ -52,7 +52,7 @@ namespace Testing4
             //create an instance of the class we want to create
             clsOrder AnOrder = new clsOrder();
             //create some test data to assign to the property
-            Int32 TestData = 1;
+            Int32 TestData = 10;
             //assign the data to the property
             AnOrder.Quantity = TestData;
             //test to see that the two values are the same
@@ -80,7 +80,7 @@ namespace Testing4
             //create an instance of the class we want to create
             clsOrder AnOrder = new clsOrder();
             //create some test data to assign to the property
-            double TestData = 1.5;
+            double TestData = 4;
             //assign the data to the property
             AnOrder.Price = TestData;
             //test to see that the two values are the same
@@ -109,7 +109,7 @@ namespace Testing4
             //Boolean variable to store the results of the validatio
             Boolean Found = false;
             //create some test data to use with the method
-            Int32 Quantity = 5;
+            Int32 Quantity = 10;
             //invoke the method
             Found = AnOrder.Find(Quantity);
             //test to see if the result is true
@@ -124,7 +124,7 @@ namespace Testing4
             //boolean variable to store the result of the search
             Boolean Found = false;
             //boolean variable to record if data is OK 
-            Boolean OK = true;
+            Boolean OK = false;
             //create some test data to use with the method
             Int32 Quantity = 10;
             //invoke the method
@@ -132,7 +132,7 @@ namespace Testing4
             //check the address no
             if (AnOrder.Quantity != 10)
             {
-                OK = false;
+                OK = true;
             }
                 //test to see that the result is correct
                 Assert.IsTrue(OK);
@@ -152,7 +152,7 @@ namespace Testing4
             //invoke the method
             Found = AnOrder.Find(Quantity);
             //check the address no
-            if (AnOrder.OrderDate != Convert.ToDateTime("15/02/2021"))
+            if (AnOrder.OrderDate != Convert.ToDateTime("07/02/2021"))
             {
                 OK = false;
 
@@ -177,7 +177,7 @@ namespace Testing4
                 //invoke the method
                 Found = AnOrder.Find(Quantity);
                 //check the property
-                if (AnOrder.BookName != "Amazing Book")
+                if (AnOrder.BookName != "A Life Without Degree")
                 {
                     OK = false;
                 }
@@ -201,7 +201,7 @@ namespace Testing4
             //invoke the method
             Found = AnOrder.Find(Quantity);
             //check the property
-            if (AnOrder.Price != 1.5)
+            if (AnOrder.Price != 7)
             {
                 OK = false;
             }
@@ -212,7 +212,7 @@ namespace Testing4
 
 
         [TestMethod]
-        public void TestOrderIdFound()
+        public void TestOrderNoFound()
         {
             //create an instance of the class we want to create
             clsOrder AnOrder = new clsOrder();
@@ -225,7 +225,7 @@ namespace Testing4
             //invoke the method
             Found = AnOrder.Find(Quantity);
             //check the address no
-            if (AnOrder.OrderId != 1)
+            if (AnOrder.OrderNo != 4)
             {
                 OK = false;
             }
