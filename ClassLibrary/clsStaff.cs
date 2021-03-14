@@ -78,18 +78,30 @@ namespace ClassLibrary
             }
         }
 
-
-        public bool Find(int staffID)
+        public bool Find(int StaffID)
         {
-            //set the private data members to the test data value
-            mStaffID = 123456;
-            mName = "Josh";
-            mSurname = "Smith";
-            mDateofBirth = Convert.ToDateTime("13/07/2003");
-            mPhoneNumber = "+447111111111";
-            mAvailability = true;
-            //always return true
-            return true;
+            clsDataConnection DB = new clsDataConnection();
+
+            DB.AddParameter("@StaffID", StaffID);
+
+            DB.Execute("sproc_tblStaffManagement_FilterByStaffID");
+
+            if (DB.Count == 1)
+            {
+                mStaffID = Convert.ToInt32(DB.DataTable.Rows[0]["StaffID"]);
+                mName = Convert.ToString(DB.DataTable.Rows[0]["Name"]);
+                mDateofBirth = Convert.ToDateTime(DB.DataTable.Rows[0]["DateofBirth"]);
+                mSurname = Convert.ToString(DB.DataTable.Rows[0]["Surname"]);
+                mPhoneNumber = Convert.ToString(DB.DataTable.Rows[0]["PhoneNumber"]);
+                mAvailability = Convert.ToBoolean(DB.DataTable.Rows[0]["Availability"]);
+
+                return true;
+            }
+
+            else
+            {
+                return false;
+            }
         }
 
         private Int32 mStaffID;
