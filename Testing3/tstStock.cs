@@ -7,6 +7,14 @@ namespace Testing3
     [TestClass]
     public class tstStock
     {
+        //good test data
+        //create some test data to pass to the method
+        string BookName = "Unfinished";
+        string AuthorName = "Priyanka Chopra";
+        string Price = "11";
+        string PublishDate = DateTime.Now.Date.ToString();
+
+
         [TestMethod]
         public void InstanceOK()
         {
@@ -78,7 +86,18 @@ namespace Testing3
             Found = AStock.Find(ProductID);
             Assert.IsTrue(Found);
         }
-
+        [TestMethod]
+        public void ValidMethodOK()
+        {
+            //Create instance of the class we want to create
+            clsStock AStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //invoke the method
+            Error = AStock.Valid(BookName,AuthorName,Price,PublishDate);
+            //test to see that the results is correct
+            Assert.AreEqual(Error, "");
+        }
         [TestMethod]
         public void TestProductIDFound()
         {
