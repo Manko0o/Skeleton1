@@ -37,7 +37,7 @@ namespace Testing2
             //create an instance of the class we want to create
             clscustomer Acustomer = new clscustomer();
             //create some test data to assign to the property
-            string TestData = "Bob Track";
+            string TestData = "Abi Sunn";
             //assign the data to the property
             Acustomer.Name = TestData;
             //test to see that the two values are the same
@@ -50,7 +50,7 @@ namespace Testing2
             //create an instance of the class we want to create
             clscustomer Acustomer = new clscustomer();
             //create some test data to assign to the property
-            string TestData = "bobtrack@gmail.com";
+            string TestData = "abisunn@gmail.com";
             //assign the data to the property
             Acustomer.Email = TestData;
             //test to see that the two values are the same
@@ -76,7 +76,7 @@ namespace Testing2
             //create an instance of the class we want to create
             clscustomer Acustomer = new clscustomer();
             //create some test data to assign to the property
-            string TestData = "56, Nine road, Newtown, NE7 8LQ";
+            string TestData = "60, Gate road, GA6 9PE";
             //assign the data to the property
             Acustomer.Address = TestData;
             //test to see that the two values are the same
@@ -147,7 +147,7 @@ namespace Testing2
             //invoke the methods
             Found = Acustomer.Find(CustomerNo);
             //check the customer no 
-            if (Acustomer.Name != "Bob Track")
+            if (Acustomer.Name != "Abi Sunn")
             {
                 OK = false;
             }
@@ -169,7 +169,7 @@ namespace Testing2
             //invoke the methods
             Found = Acustomer.Find(CustomerNo);
             //check the customer no
-            if (Acustomer.Email != "bobtrack@gmail.com")
+            if (Acustomer.Email != "abisunn@gmail.com")
             {
                 OK = false;
             }
@@ -191,7 +191,7 @@ namespace Testing2
             //invoke the methods
             Found = Acustomer.Find(CustomerNo);
             //check the customer no
-            if (Acustomer.DOB != Convert.ToDateTime("16/08/2000"))
+            if (Acustomer.DOB != Convert.ToDateTime("15/01/1998"))
             {
                 OK = false;
             }
@@ -213,7 +213,7 @@ namespace Testing2
             //invoke the methods
             Found = Acustomer.Find(CustomerNo);
             //check the customer no
-            if (Acustomer.Address != "56, Nine road, Newtown, NE7 8LQ")
+            if (Acustomer.Address != "60, Gate road, GA6 9PE")
             {
                 OK = false;
             }
