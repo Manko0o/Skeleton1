@@ -1,12 +1,20 @@
 ﻿using System;
-using ClassLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ClassLibrary;
+
 
 namespace Testing1
 {
     [TestClass]
     public class tstStaff
     {
+
+        string Name = "Filip";
+        string Surname = "Kobeszko";
+        string DateofBirth = "15/01/2001";
+        string PhoneNumber = "07387666666";
+
+
         [TestMethod]
         public void InstanceOK()
         {
@@ -239,8 +247,291 @@ namespace Testing1
             //test to see if the result is true
             Assert.IsTrue(OK);
         }
+
+
+        [TestMethod]
+        public void ValidMethodOK()
+        {
+            clsStaff AStaff = new clsStaff();
+            String Error = "";
+            Error = AStaff.Valid(Name, Surname, DateofBirth, PhoneNumber);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void NameMinLessOne()
+        {
+            //create an instance of the class we want to create
+            clsStaff AStaff = new clsStaff();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string Name = ""; //this should be ok
+            //invoke the method
+            Error = AStaff.Valid(Name, Surname, DateofBirth, PhoneNumber);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void NameMin()
+        {
+            //create an instance of the class we want to create
+            clsStaff AStaff = new clsStaff();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string Name = "a"; //this should be ok
+            //invoke the method
+            Error = AStaff.Valid(Name, Surname, DateofBirth, PhoneNumber);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+
+        [TestMethod]
+        public void NameMinPlusOne()
+        {
+            //create an instance of the class we want to create
+            clsStaff AStaff = new clsStaff();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string Name = "aa"; //this should be ok
+            //invoke the method
+            Error = AStaff.Valid(Name, Surname, DateofBirth, PhoneNumber);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+
+        }
+
+
+        [TestMethod]
+        public void NameMaxLessOne()
+        {
+            //create an instance of the class we want to create
+            clsStaff AStaff = new clsStaff();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string Name = ""; //this should be ok
+            Name = Name.PadRight(49, 'a');
+            //invoke the method
+            Error = AStaff.Valid(Name, Surname, DateofBirth, PhoneNumber);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void NameMax()
+        {
+            //create an instance of the class we want to create
+            clsStaff AStaff = new clsStaff();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string Name = ""; //this should be ok
+            Name = Name.PadRight(50, 'a');
+            //invoke the method
+            Error = AStaff.Valid(Name, Surname, DateofBirth, PhoneNumber);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+
+        [TestMethod]
+        public void NameMaxPlusOne()
+        {
+            //create an instance of the class we want to create
+            clsStaff AStaff = new clsStaff();
+            //string variable to store any error message
+            String Error = "";
+            //this should fail
+            string Name = ""; //this should be ok
+            Name = Name.PadRight(51, 'a');
+            //invoke the method
+            Error = AStaff.Valid(Name, Surname, DateofBirth, PhoneNumber);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+
+        [TestMethod]
+        public void NameMid()
+        {
+            //create an instance of the class we want to create
+            clsStaff AStaff = new clsStaff();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string Name = ""; //this should be ok
+            Name = Name.PadRight(25, 'a');
+            //invoke the method
+            Error = AStaff.Valid(Name, Surname, DateofBirth, PhoneNumber);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void SurnameMinLessOne()
+        {
+            //create an instance of the class we want to create
+            clsStaff AStaff = new clsStaff();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string Surname = ""; //this should be ok
+            //invoke the method
+            Error = AStaff.Valid(Name, Surname, DateofBirth, PhoneNumber);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void SurnameMin()
+        {
+            //create an instance of the class we want to create
+            clsStaff AStaff = new clsStaff();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string Surname = "a"; //this should be ok
+            //invoke the method
+            Error = AStaff.Valid(Name, Surname, DateofBirth, PhoneNumber);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+
+        [TestMethod]
+        public void SurnameMinPlusOne()
+        {
+            //create an instance of the class we want to create
+            clsStaff AStaff = new clsStaff();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string Surname = "aa"; //this should be ok
+            //invoke the method
+            Error = AStaff.Valid(Name, Surname, DateofBirth, PhoneNumber);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+
+        }
+
+
+        [TestMethod]
+        public void SurnameMaxLessOne()
+        {
+            //create an instance of the class we want to create
+            clsStaff AStaff = new clsStaff();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string Surname = ""; //this should be ok
+            Surname = Surname.PadRight(49, 'a');
+            //invoke the method
+            Error = AStaff.Valid(Name, Surname, DateofBirth, PhoneNumber);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void SurnameMax()
+        {
+            //create an instance of the class we want to create
+            clsStaff AStaff = new clsStaff();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string Surname = ""; //this should be ok
+            Surname = Surname.PadRight(50, 'a');
+            //invoke the method
+            Error = AStaff.Valid(Name, Surname, DateofBirth, PhoneNumber);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+
+        [TestMethod]
+        public void SurnameMaxPlusOne()
+        {
+            //create an instance of the class we want to create
+            clsStaff AStaff = new clsStaff();
+            //string variable to store any error message
+            String Error = "";
+            //this should fail
+            string Surname = ""; //this should be ok
+            Surname = Surname.PadRight(51, 'a');
+            //invoke the method
+            Error = AStaff.Valid(Name, Surname, DateofBirth, PhoneNumber);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+
+        [TestMethod]
+        public void SurnameMid()
+        {
+            //create an instance of the class we want to create
+            clsStaff AStaff = new clsStaff();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string Surname = ""; //this should be ok
+            Surname = Surname.PadRight(25, 'a');
+            //invoke the method
+            Error = AStaff.Valid(Name, Surname, DateofBirth, PhoneNumber);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void PhoneNumberMin()
+        {
+            //create an instance of the class we want to create
+            clsStaff AStaff = new clsStaff();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string PhoneNumber = "07387666666"; //this should be ok
+            //invoke the method
+            Error = AStaff.Valid(Name, Surname, DateofBirth, PhoneNumber);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void PhoneNumberMinLessOne()
+        {
+            //create an instance of the class we want to create
+            clsStaff AStaff = new clsStaff();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string PhoneNumber = "0738766666"; //this should be ok
+            //invoke the method
+            Error = AStaff.Valid(Name, Surname, DateofBirth, PhoneNumber);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void PhoneNumberMinPlusOne()
+        {
+            //create an instance of the class we want to create
+            clsStaff AStaff = new clsStaff();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string PhoneNumber = "073876666666"; //this should be ok
+            //invoke the method
+            Error = AStaff.Valid(Name, Surname, DateofBirth, PhoneNumber);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+
     }
-
-
 
 }

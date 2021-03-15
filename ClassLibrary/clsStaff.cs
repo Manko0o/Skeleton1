@@ -110,5 +110,54 @@ namespace ClassLibrary
         private string mSurname;
         private string mPhoneNumber;
         private bool mAvailability;
+
+        public string Valid(string name, string surname, string dateofBirth, string phoneNumber)
+        {
+            String Error = "";
+
+            if (name.Length == 0)
+            {
+                Error = Error + "The name may not be blank : ";
+
+            }
+
+            if (name.Length > 50)
+            {
+                Error = Error + "The name cannot be longer than 50 characters : ";
+
+            }
+
+            if (surname.Length == 0)
+            {
+                Error = Error + "The surname may not be blank : ";
+
+            }
+
+            if (surname.Length > 50)
+            {
+                Error = Error + "The surname cannot be longer than 50 characters : ";
+
+            }
+
+            if (phoneNumber.Length == 0)
+            {
+                Error = Error + "The surname cannot be longer than 50 characters : ";
+
+            }
+
+            if (phoneNumber.Length < 11)
+            {
+                Error = Error + "The phone numbers is too short : ";
+
+            }
+
+            if (phoneNumber.Length > 11)
+            {
+                Error = Error + "The phone numbers is too long : ";
+
+            }
+
+            return Error;
+        }
     }
 }
