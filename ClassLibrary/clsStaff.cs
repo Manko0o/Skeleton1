@@ -104,13 +104,6 @@ namespace ClassLibrary
             }
         }
 
-        private Int32 mStaffID;
-        private string mName;
-        private DateTime mDateofBirth;
-        private string mSurname;
-        private string mPhoneNumber;
-        private bool mAvailability;
-
         public string Valid(string name, string surname, string dateofBirth, string phoneNumber)
         {
             String Error = "";
@@ -159,5 +152,12 @@ namespace ClassLibrary
 
             return Error;
         }
+
+        private Int32 mStaffID;
+        private string mName;
+        private DateTime mDateofBirth;
+        private string mSurname;
+        private string mPhoneNumber;
+        private bool mAvailability;
     }
 }
