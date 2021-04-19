@@ -34,4 +34,23 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
 
     }
+
+    protected void btnFind_Click(object sender, EventArgs e)
+    {
+        clsOrder AnOrder = new clsOrder();
+        Int32 OrderNo;
+        Boolean Found = false;
+        OrderNo = Convert.ToInt32(txtOrderNo.Text);
+        Found = AnOrder.Find(OrderNo);
+        if (Found == true)
+        {
+          //  txtOrderNo.Text = AnOrder.OrderNo;
+            txtBookName.Text = AnOrder.BookName;
+           // txtQuantity.Text = AnOrder.Quantity;
+            txtOrderDate.Text = AnOrder.OrderDate.ToString();
+           // txtPrice.Text = AnOrder.Price;
+
+
+        }
+    }
 }
