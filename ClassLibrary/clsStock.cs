@@ -110,10 +110,78 @@ namespace ClassLibrary
             }
 
         }
-
+    
         public string Valid(string bookName, string authorName, string price, string publishDate)
         {
-            return"";
+            //create a string variable to store the error 
+            String Error = "";
+            //create a temporary variable to store date values
+            DateTime DateTemp;
+            double PriceTemp;
+            //if the BookName is blank 
+            if (bookName.Length == 0)
+            {
+                //record the error
+                Error = Error + "The BookName should not be blank : ";
+            }
+            //if the Bookname is greater than 20 characters 
+            if (bookName.Length > 20 )
+            {
+                //record the error
+                Error = Error + "The BookName must be less than 20 Characters : ";
+            }
+            if (authorName.Length == 0)
+            {
+                //record the error
+                Error = Error + "The AuthorName should not be blank : ";
+            }
+            //if the Bookname is greater than 20 characters 
+            if (authorName.Length > 20)
+            {
+                //record the error
+                Error = Error + "The AuthorName must be less than 20 Characters : ";
+            }
+            //copy the dateAdded value to the DateTemp varaible
+            try
+            {
+                DateTemp = Convert.ToDateTime(publishDate);
+                if (DateTemp < DateTime.Now.Date)
+                {
+                    //record error
+                    Error = Error + "The date cannot be in the past : ";
+                }
+                //check to see if the date is greater than today's date
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the future : ";
+                }
+            }
+            catch
+            {
+                //record the error
+                Error = Error + "The date was not a valid date: ";
+            }
+
+            try
+            {
+                PriceTemp = Convert.ToDouble(price);
+                if (PriceTemp < 0)
+                {
+                    //record error
+                    Error = Error + "The price cannot be negative : ";
+                }
+                //check to see if the date is greater than today's date
+            }
+            catch
+            {
+                //record the error
+                Error = Error + "The price was not valid : ";
+            }
+            //return any error messages
+
+            return Error;
         }
+        
     }
 }
