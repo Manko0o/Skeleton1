@@ -18,6 +18,7 @@
         <p>
             <asp:Label ID="lblQuantity" runat="server" Text="Quantity" width="81px"></asp:Label>
             <asp:TextBox ID="txtQuantity" runat="server"></asp:TextBox>
+            <asp:Button ID="btnFind" runat="server" Text="Find" />
         </p>
         <asp:Label ID="lblOrderDate" runat="server" Text="Order Date" width="81px"></asp:Label>
         <asp:TextBox ID="txtOrderDate" runat="server"></asp:TextBox>
