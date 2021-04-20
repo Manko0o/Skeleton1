@@ -35,6 +35,41 @@ namespace ClassLibrary
             }
         }
 
+        public string Valid(object bookName, object quantity, object orderDate, object price)
+        {
+            return "";
+        }
+
+        public string Valid(string bookName, string quantity, string orderDate, string price)
+        {
+            String Error = "";
+            DateTime DateTemp;
+            if (bookName.Length == 0)
+            {
+                Error = Error + "The book name cannot be blank: ";
+            }
+
+            if (bookName.Length > 60)
+
+            {
+                Error = Error + "The book name must be less than 60 characters: ";
+
+
+            }
+            DateTemp = Convert.ToDateTime(orderDate);
+            if (DateTemp < DateTime.Now.Date)
+            {
+                Error = Error + "The date cannot be in the past : ";
+            }
+
+            if (DateTemp > DateTime.Now.Date)
+            {
+                Error = Error + "The date cannot be in the future : ";
+            }
+            return Error;
+        }
+
+
 
         private string mBookName;
 
