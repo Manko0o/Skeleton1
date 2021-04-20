@@ -40,7 +40,7 @@ namespace ClassLibrary
             return "";
         }
 
-        public string Valid(string bookName, string quantity, string orderDate, string price)
+        public string Valid(string bookName, string quantity, string orderDate, string price, string price1)
         {
             String Error = "";
             DateTime DateTemp;
@@ -56,7 +56,7 @@ namespace ClassLibrary
 
 
             }
-            DateTemp = Convert.ToDateTime(orderDate);
+            DateTemp = Convert.ToDateTime(OrderDate);
             if (DateTemp < DateTime.Now.Date)
             {
                 Error = Error + "The date cannot be in the past : ";
@@ -86,6 +86,7 @@ namespace ClassLibrary
             }
         }
 
+      
 
         private double mPrice;
 
@@ -141,18 +142,18 @@ namespace ClassLibrary
 
 
 
-        public bool Find(int Quantity)
+        public bool Find(int OrderNo)
         {
             //create an instance of the data connection
             clsDataConnection DB = new clsDataConnection();
             //add the parameter for the Quantity we are searching for
-            DB.AddParameter("@Quantity", Quantity);
+            DB.AddParameter("@OrderNo", OrderNo);
             //below code then executes the stored procedure
-            DB.Execute("sproc_tblOrderProcessing_FilterByQuantity");
+            DB.Execute("sproc_tblOrderProcessing_FilterByOrderNo");
             //if one record is found (there should be one or zero)
             if (DB.Count == 1)
             {
-                mQuantity = Convert.ToInt32(DB.DataTable.Rows[0]["OrderNo"]);
+                mQuantity = Convert.ToInt32(DB.DataTable.Rows[0]["Quantity"]);
                 mOrderDate = Convert.ToDateTime(DB.DataTable.Rows[0]["OrderDate"]);
                 mBookName = Convert.ToString(DB.DataTable.Rows[0]["BookName"]);
                 mPrice = Convert.ToDouble(DB.DataTable.Rows[0]["Price"]);
