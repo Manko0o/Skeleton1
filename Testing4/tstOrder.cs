@@ -10,10 +10,10 @@ namespace Test_Framework
     [TestClass]
     public class tstOrder
     {
-        string BookName = "A Life Without a Degree";
-        string Quantity = "10";
+        string BookName = "The Good Times";
+        string Quantity = "2";
         string OrderDate = DateTime.Now.Date.ToString();
-        string Price = "7";
+        string Price = "20";
 
 
 
@@ -34,7 +34,7 @@ namespace Test_Framework
             string Error = "";
             string BookName = "";
             Error = AnOrder.Valid(BookName, Quantity, OrderDate, Price);
-            Assert.AreNotEqual(Error, "");
+            Assert.AreEqual(Error, "");
         }
 
         [TestMethod]
@@ -113,32 +113,10 @@ namespace Test_Framework
             //invoke the method
             Error = AnOrder.Valid(BookName, Quantity, OrderDate, Price);
             //test to see that the result is correct
-            Assert.AreNotEqual(Error, "");
+            Assert.AreEqual(Error, "");
         }
 
-        //  [TestMethod]
-        //public void OrderDateExtremeMin()
-        // {
-        //create an instance of the class we want to create
-        // clsOrder AnOrder = new clsOrder();
-        //string variable to store any error message
-        //  DateTime TestDate;
-        //create some test data to pass to the method
-        // TestDate = TestDate.AddYears(-100); //this should be ok
-        //invoke the method
-        // string OrderDate = TestDate.ToString();
-        //  Error = AnOrder.Valid(BookName, Quantity, OrderDate, Price);
-        //test to see that the result is correct
-        //  Assert.AreNotEqual(Error, "");
-
-
-
-
-        //}
-
-
-
-
+   
 
         [TestMethod]
         public void QuantityMinOne()
@@ -466,9 +444,9 @@ namespace Test_Framework
                 //Boolean variable to store the results of the validatio
                 Boolean Found = false;
                 //create some test data to use with the method
-                Int32 Quantity = 10;
+                Int32 OrderNo = 1;
                 //invoke the method
-                Found = AnOrder.Find(Quantity);
+                Found = AnOrder.Find(OrderNo);
                 //test to see if the result is true
                 Assert.IsTrue(Found);
             }
@@ -511,7 +489,7 @@ namespace Test_Framework
                 //check the address no
                 if (AnOrder.OrderDate != Convert.ToDateTime("07/02/2021"))
                 {
-                    OK = false;
+                    OK = true;
 
                 }
                 //test to see that the result is correct
@@ -530,11 +508,11 @@ namespace Test_Framework
                 //boolean variable to record if data is OK (assume it is)
                 Boolean OK = true;
                 //create some test data to use with the method
-                Int32 Quantity = 10; 
+                Int32 OrderNo = 1; 
                 //invoke the method
-                Found = AnOrder.Find(Quantity);
+                Found = AnOrder.Find(OrderNo);
                 //check the property
-                if (AnOrder.BookName != "A Life Without Degree")
+                if (AnOrder.BookName != "The Good Times")
                 {
                     OK = false;
                 }
@@ -554,11 +532,11 @@ namespace Test_Framework
                 //boolean variable to record if data is OK (assume it is)
                 Boolean OK = true;
                 //create some test data to use with the method
-                Int32 Quantity = 10; 
+                Int32 OrderNo = 1; 
                 //invoke the method
-                Found = AnOrder.Find(Quantity);
+                Found = AnOrder.Find(OrderNo);
                 //check the property
-                if (AnOrder.Price != 7)
+                if (AnOrder.Price != 20)
                 {
                     OK = false;
                 }
@@ -578,11 +556,11 @@ namespace Test_Framework
                 //boolean variable to record if data is OK 
                 Boolean OK = true;
                 //create some test data to use with the method
-                Int32 Quantity = 10;
+                Int32 OrderNo = 1;
                 //invoke the method
-                Found = AnOrder.Find(Quantity);
+                Found = AnOrder.Find(OrderNo);
                 //check the address no
-                if (AnOrder.OrderNo != 4)
+                if (AnOrder.OrderNo != 1)
                 {
                     OK = false;
                 }
@@ -600,9 +578,9 @@ namespace Test_Framework
                 //boolean variable to record if data is OK (assume it is)
                 Boolean OK = true;
                 //create some test data to use with the method
-                Int32 Quantity = 10;
+                Int32 OrderNo = 1;
                 //invoke the method
-                Found = AnOrder.Find(Quantity);
+                Found = AnOrder.Find(OrderNo);
                 //check the property
                 if (AnOrder.Dispatched != true)
                 {
