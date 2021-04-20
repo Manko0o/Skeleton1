@@ -2,166 +2,523 @@
 using ClassLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Testing4
+
+
+
+namespace Test_Framework
 {
     [TestClass]
     public class tstOrder
     {
-
-        [TestMethod]
-        public void OrderNoPropertyOK()
-        {
-            //create an instance of the class we want to create
-            clsOrder AnOrder = new clsOrder();
-            //create some test data to assign to the property
-            Int32 TestData = 1;
-            //assign the data to the property
-            AnOrder.OrderNo = TestData;
-            //test to see that the two values are the same
-            Assert.AreEqual(AnOrder.OrderNo, TestData);
-        }
+        string BookName = "A Life Without a Degree";
+        string Quantity = "10";
+        string OrderDate = DateTime.Now.Date.ToString();
+        string Price = "7";
 
 
 
         [TestMethod]
-        public void InstanceOK()
+
+        public void ValidMethodOK()
         {
-            //create an instance of the class we want to create
             clsOrder AnOrder = new clsOrder();
-            //test to see that it exists
-            Assert.IsNotNull(AnOrder);
+            string Error = "";
+            Error = AnOrder.Valid(BookName, Quantity, OrderDate, Price);
+            Assert.AreEqual(Error, "");
         }
 
         [TestMethod]
-        public void BookNamePropertyOK()
+        public void BookNameMinOne()
         {
-            //create an instance of the class we want to create
             clsOrder AnOrder = new clsOrder();
-            //create some test data to assign to the property
-            string TestData = "A Life Without Degree";
-            //assign the data to the property
-            AnOrder.BookName = TestData;
-            //test to see that the two values are the same
-            Assert.AreEqual(AnOrder.BookName, TestData);
-
+            string Error = "";
+            string BookName = "";
+            Error = AnOrder.Valid(BookName, Quantity, OrderDate, Price);
+            Assert.AreNotEqual(Error, "");
         }
 
         [TestMethod]
-        public void QuantityPropertyOK()
+        public void BookNameMinPlusOne()
         {
-            //create an instance of the class we want to create
             clsOrder AnOrder = new clsOrder();
-            //create some test data to assign to the property
-            Int32 TestData = 10;
-            //assign the data to the property
-            AnOrder.Quantity = TestData;
-            //test to see that the two values are the same
-            Assert.AreEqual(AnOrder.Quantity, TestData);
+            string Error = "";
+            string BookName = "bb";
+            Error = AnOrder.Valid(BookName, Quantity, OrderDate, Price);
+            Assert.AreEqual(Error, "");
         }
 
 
         [TestMethod]
-        public void OrderDatePropertyOK()
+        public void BookNameMaxLessOne()
         {
-            //create an instance of the class we want to create
             clsOrder AnOrder = new clsOrder();
-            //create some test data to assign to the property
-            DateTime TestData = DateTime.Now.Date;
-            //assign the data to the property
-            AnOrder.OrderDate = TestData;
-            //test to see that the two values are the same
-            Assert.AreEqual(AnOrder.OrderDate, TestData);
-        }
-
-
-        [TestMethod]
-        public void PricePropertyOK()
-        {
-            //create an instance of the class we want to create
-            clsOrder AnOrder = new clsOrder();
-            //create some test data to assign to the property
-            double TestData = 4;
-            //assign the data to the property
-            AnOrder.Price = TestData;
-            //test to see that the two values are the same
-            Assert.AreEqual(AnOrder.Price, TestData);
-        }
-
-
-        [TestMethod]
-        public void DispatchedPropertyOK()
-        {
-            //create an instance of the class we want to create
-            clsOrder AnOrder = new clsOrder();
-            //create some test data to assign to the property
-            Boolean TestData = true;
-            //assign the data to the property
-            AnOrder.Dispatched = TestData;
-            //test to see that the two values are the same
-            Assert.AreEqual(AnOrder.Dispatched, TestData);
+            string Error = "";
+            string BookName = "bbbbb";
+            Error = AnOrder.Valid(BookName, Quantity, OrderDate, Price);
+            Assert.AreEqual(Error, "");
         }
 
         [TestMethod]
-        public void FindMethodOK()
+        public void BookNameMax()
+        {
+            clsOrder AnOrder = new clsOrder();
+            string Error = "";
+            string BookName = "bbbbbb";
+            Error = AnOrder.Valid(BookName, Quantity, OrderDate, Price);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void BookNameMid()
         {
             //create an instance of the class we want to create
             clsOrder AnOrder = new clsOrder();
-            //Boolean variable to store the results of the validatio
-            Boolean Found = false;
-            //create some test data to use with the method
-            Int32 Quantity = 10;
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string BookName = "aaa"; //this should be ok
             //invoke the method
-            Found = AnOrder.Find(Quantity);
-            //test to see if the result is true
-            Assert.IsTrue(Found);
+            Error = AnOrder.Valid(BookName, Quantity, OrderDate, Price);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+
         }
 
         [TestMethod]
-        public void TestQuantityFound()
+        public void BookNameMaxPlusOne()
         {
             //create an instance of the class we want to create
             clsOrder AnOrder = new clsOrder();
-            //boolean variable to store the result of the search
-            Boolean Found = false;
-            //boolean variable to record if data is OK 
-            Boolean OK = false;
-            //create some test data to use with the method
-            Int32 Quantity = 10;
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string BookName = "aaaaaaaa"; //this should be ok
             //invoke the method
-            Found = AnOrder.Find(Quantity);
-            //check the address no
-            if (AnOrder.Quantity != 10)
+            Error = AnOrder.Valid(BookName, Quantity, OrderDate, Price);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+
+        [TestMethod]
+        public void BookNameExtremeMax()
+        {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string BookName = "aaaaaaaa"; //this should be ok
+            BookName = BookName.PadRight(500, 'b');
+            //invoke the method
+            Error = AnOrder.Valid(BookName, Quantity, OrderDate, Price);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        //  [TestMethod]
+        //public void OrderDateExtremeMin()
+        // {
+        //create an instance of the class we want to create
+        // clsOrder AnOrder = new clsOrder();
+        //string variable to store any error message
+        //  DateTime TestDate;
+        //create some test data to pass to the method
+        // TestDate = TestDate.AddYears(-100); //this should be ok
+        //invoke the method
+        // string OrderDate = TestDate.ToString();
+        //  Error = AnOrder.Valid(BookName, Quantity, OrderDate, Price);
+        //test to see that the result is correct
+        //  Assert.AreNotEqual(Error, "");
+
+
+
+
+        //}
+
+
+
+
+
+        [TestMethod]
+        public void QuantityMinOne()
+        {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //string variable to store any error message
+            String Error = "";
+            //this should fail
+            string Quantity = "";
+            //invoke the method
+            Error = AnOrder.Valid(BookName, Quantity, OrderDate, Price);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void QuantityMin()
+        {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //string variable to store any error message
+            String Error = "";
+            //this should pass
+            string Quantity = "1";
+            //invoke the method
+            Error = AnOrder.Valid(BookName, Quantity, OrderDate, Price);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+
+        [TestMethod]
+        public void QuantityMinPlusOne()
+        {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //string variable to store any error message
+            String Error = "";
+            //this should pass
+            string Quantity = "11";
+            //invoke the method
+            Error = AnOrder.Valid(BookName, Quantity, OrderDate, Price);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void QuantityMaxLessOne()
+        {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //string variable to store any error message
+            String Error = "";
+            //this should pass
+            string Quantity = "1111111";
+            //invoke the method
+            Error = AnOrder.Valid(BookName, Quantity, OrderDate, Price);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void QuantityMax()
+        {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //string variable to store any error message
+            String Error = "";
+            //this should pass
+            string Quantity = "123456789";
+            //invoke the method
+            Error = AnOrder.Valid(BookName, Quantity, OrderDate, Price);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void QuantityMaxPlusOne()
+        {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //string variable to store any error message
+            String Error = "";
+            //this should pass
+            string Quantity = "123456789";
+            //invoke the method
+            Error = AnOrder.Valid(BookName, Quantity, OrderDate, Price);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void QuantityMid()
+        {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //string variable to store any error message
+            String Error = "";
+            //this should pass
+            string Quantity = "1";
+            //invoke the method
+            Error = AnOrder.Valid(BookName, Quantity, OrderDate, Price);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void PriceMinOne()
+        {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //string variable to store any error message
+            String Error = "";
+            //this should fail
+            string Price = "";
+            //invoke the method
+            Error = AnOrder.Valid(BookName, Quantity, OrderDate, Price);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void PriceMin()
+        {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //string variable to store any error message
+            String Error = "";
+            //this should pass
+            string Price = "1";
+            //invoke the method
+            Error = AnOrder.Valid(BookName, Quantity, OrderDate, Price);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void PriceMinPlusOne()
+        {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //string variable to store any error message
+            String Error = "";
+            //this should pass
+            string Price = "11";
+            //invoke the method
+            Error = AnOrder.Valid(BookName, Quantity, OrderDate, Price);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void PriceMaxLessOne()
+        {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //string variable to store any error message
+            String Error = "";
+            //this should pass
+            string Price = "1111111";
+            //invoke the method
+            Error = AnOrder.Valid(BookName, Quantity, OrderDate, Price);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void PriceMax()
+        {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //string variable to store any error message
+            String Error = "";
+            //this should pass
+            string Price = "123456789";
+            //invoke the method
+            Error = AnOrder.Valid(BookName, Quantity, OrderDate, Price);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void PriceMaxPlusOne()
+        {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //string variable to store any error message
+            String Error = "";
+            //this should pass
+            string Price = "";
+            //invoke the method
+            Error = AnOrder.Valid(BookName, Quantity, OrderDate, Price);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void PriceMid()
+        {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //string variable to store any error message
+            String Error = "";
+            //this should pass
+            string Quantity = "1";
+            //invoke the method
+            Error = AnOrder.Valid(BookName, Quantity, OrderDate, Price);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+
+        }
+    }
+
+
+
+    namespace Testing4
+    {
+        [TestClass]
+        public class tstOrder
+        {
+
+            [TestMethod]
+            public void OrderNoPropertyOK()
             {
-                OK = true;
+                //create an instance of the class we want to create
+                clsOrder AnOrder = new clsOrder();
+                //create some test data to assign to the property
+                Int32 TestData = 1;
+                //assign the data to the property
+                AnOrder.OrderNo = TestData;
+                //test to see that the two values are the same
+                Assert.AreEqual(AnOrder.OrderNo, TestData);
             }
+
+
+
+            [TestMethod]
+            public void InstanceOK()
+            {
+                //create an instance of the class we want to create
+                clsOrder AnOrder = new clsOrder();
+                //test to see that it exists
+                Assert.IsNotNull(AnOrder);
+            }
+
+            [TestMethod]
+            public void BookNamePropertyOK()
+            {
+                //create an instance of the class we want to create
+                clsOrder AnOrder = new clsOrder();
+                //create some test data to assign to the property
+                string TestData = "A Life Without Degree";
+                //assign the data to the property
+                AnOrder.BookName = TestData;
+                //test to see that the two values are the same
+                Assert.AreEqual(AnOrder.BookName, TestData);
+
+            }
+
+            [TestMethod]
+            public void QuantityPropertyOK()
+            {
+                //create an instance of the class we want to create
+                clsOrder AnOrder = new clsOrder();
+                //create some test data to assign to the property
+                Int32 TestData = 10;
+                //assign the data to the property
+                AnOrder.Quantity = TestData;
+                //test to see that the two values are the same
+                Assert.AreEqual(AnOrder.Quantity, TestData);
+            }
+
+
+            [TestMethod]
+            public void OrderDatePropertyOK()
+            {
+                //create an instance of the class we want to create
+                clsOrder AnOrder = new clsOrder();
+                //create some test data to assign to the property
+                DateTime TestData = DateTime.Now.Date;
+                //assign the data to the property
+                AnOrder.OrderDate = TestData;
+                //test to see that the two values are the same
+                Assert.AreEqual(AnOrder.OrderDate, TestData);
+            }
+
+
+            [TestMethod]
+            public void PricePropertyOK()
+            {
+                //create an instance of the class we want to create
+                clsOrder AnOrder = new clsOrder();
+                //create some test data to assign to the property
+                double TestData = 4;
+                //assign the data to the property
+                AnOrder.Price = TestData;
+                //test to see that the two values are the same
+                Assert.AreEqual(AnOrder.Price, TestData);
+            }
+
+
+            [TestMethod]
+            public void DispatchedPropertyOK()
+            {
+                //create an instance of the class we want to create
+                clsOrder AnOrder = new clsOrder();
+                //create some test data to assign to the property
+                Boolean TestData = true;
+                //assign the data to the property
+                AnOrder.Dispatched = TestData;
+                //test to see that the two values are the same
+                Assert.AreEqual(AnOrder.Dispatched, TestData);
+            }
+
+            [TestMethod]
+            public void FindMethodOK()
+            {
+                //create an instance of the class we want to create
+                clsOrder AnOrder = new clsOrder();
+                //Boolean variable to store the results of the validatio
+                Boolean Found = false;
+                //create some test data to use with the method
+                Int32 Quantity = 10;
+                //invoke the method
+                Found = AnOrder.Find(Quantity);
+                //test to see if the result is true
+                Assert.IsTrue(Found);
+            }
+
+            [TestMethod]
+            public void TestQuantityFound()
+            {
+                //create an instance of the class we want to create
+                clsOrder AnOrder = new clsOrder();
+                //boolean variable to store the result of the search
+                Boolean Found = false;
+                //boolean variable to record if data is OK 
+                Boolean OK = false;
+                //create some test data to use with the method
+                Int32 Quantity = 10;
+                //invoke the method
+                Found = AnOrder.Find(Quantity);
+                //check the address no
+                if (AnOrder.Quantity != 10)
+                {
+                    OK = true;
+                }
                 //test to see that the result is correct
                 Assert.IsTrue(OK);
             }
-        
-        [TestMethod]
-        public void TestOrderDateFound()
-        {
-            //create an instance of the class we want to create
-            clsOrder AnOrder = new clsOrder();
-            //boolean variable to store the result of the search
-            Boolean Found = false;
-            //boolean variable to record if data is OK 
-            Boolean OK = true;
-            //create some test data to use with the method
-            Int32 Quantity = 10;
-            //invoke the method
-            Found = AnOrder.Find(Quantity);
-            //check the address no
-            if (AnOrder.OrderDate != Convert.ToDateTime("07/02/2021"))
-            {
-                OK = false;
 
-            }
+            [TestMethod]
+            public void TestOrderDateFound()
+            {
+                //create an instance of the class we want to create
+                clsOrder AnOrder = new clsOrder();
+                //boolean variable to store the result of the search
+                Boolean Found = false;
+                //boolean variable to record if data is OK 
+                Boolean OK = true;
+                //create some test data to use with the method
+                Int32 Quantity = 10;
+                //invoke the method
+                Found = AnOrder.Find(Quantity);
+                //check the address no
+                if (AnOrder.OrderDate != Convert.ToDateTime("07/02/2021"))
+                {
+                    OK = false;
+
+                }
                 //test to see that the result is correct
                 Assert.IsTrue(OK);
 
             }
-       
+
 
             [TestMethod]
             public void BookNameFound()
@@ -173,7 +530,7 @@ namespace Testing4
                 //boolean variable to record if data is OK (assume it is)
                 Boolean OK = true;
                 //create some test data to use with the method
-                Int32 Quantity = 10; ;
+                Int32 Quantity = 10; 
                 //invoke the method
                 Found = AnOrder.Find(Quantity);
                 //check the property
@@ -187,77 +544,78 @@ namespace Testing4
 
 
 
-        [TestMethod]
-        public void PriceFound()
-        {
-            //create an instance of the class we want to create
-            clsOrder AnOrder = new clsOrder();
-            //boolean variable to store the result of the search
-            Boolean Found = false;
-            //boolean variable to record if data is OK (assume it is)
-            Boolean OK = true;
-            //create some test data to use with the method
-            Int32 Quantity = 10; ;
-            //invoke the method
-            Found = AnOrder.Find(Quantity);
-            //check the property
-            if (AnOrder.Price != 7)
+            [TestMethod]
+            public void PriceFound()
             {
-                OK = false;
+                //create an instance of the class we want to create
+                clsOrder AnOrder = new clsOrder();
+                //boolean variable to store the result of the search
+                Boolean Found = false;
+                //boolean variable to record if data is OK (assume it is)
+                Boolean OK = true;
+                //create some test data to use with the method
+                Int32 Quantity = 10; 
+                //invoke the method
+                Found = AnOrder.Find(Quantity);
+                //check the property
+                if (AnOrder.Price != 7)
+                {
+                    OK = false;
+                }
+                //test to see that the result is correct
+                Assert.IsTrue(OK);
             }
-            //test to see that the result is correct
-            Assert.IsTrue(OK);
-        }
 
 
 
-        [TestMethod]
-        public void TestOrderNoFound()
-        {
-            //create an instance of the class we want to create
-            clsOrder AnOrder = new clsOrder();
-            //boolean variable to store the result of the search
-            Boolean Found = false;
-            //boolean variable to record if data is OK 
-            Boolean OK = true;
-            //create some test data to use with the method
-            Int32 Quantity = 10;
-            //invoke the method
-            Found = AnOrder.Find(Quantity);
-            //check the address no
-            if (AnOrder.OrderNo != 4)
+            [TestMethod]
+            public void TestOrderNoFound()
             {
-                OK = false;
-            }
+                //create an instance of the class we want to create
+                clsOrder AnOrder = new clsOrder();
+                //boolean variable to store the result of the search
+                Boolean Found = false;
+                //boolean variable to record if data is OK 
+                Boolean OK = true;
+                //create some test data to use with the method
+                Int32 Quantity = 10;
+                //invoke the method
+                Found = AnOrder.Find(Quantity);
+                //check the address no
+                if (AnOrder.OrderNo != 4)
+                {
+                    OK = false;
+                }
                 //test to see that the result is correct
                 Assert.IsTrue(OK);
             }
 
             [TestMethod]
-        public void TestDispatchedFound()
-        {
-            //create an instance of the class we want to create
-            clsOrder AnOrder = new clsOrder();
-            //boolean variable to store the result of the search
-            Boolean Found = false;
-            //boolean variable to record if data is OK (assume it is)
-            Boolean OK = true;
-            //create some test data to use with the method
-            Int32 Quantity = 10;
-            //invoke the method
-            Found = AnOrder.Find(Quantity);
-            //check the property
-            if (AnOrder.Dispatched != true)
+            public void TestDispatchedFound()
             {
-                OK = false;
+                //create an instance of the class we want to create
+                clsOrder AnOrder = new clsOrder();
+                //boolean variable to store the result of the search
+                Boolean Found = false;
+                //boolean variable to record if data is OK (assume it is)
+                Boolean OK = true;
+                //create some test data to use with the method
+                Int32 Quantity = 10;
+                //invoke the method
+                Found = AnOrder.Find(Quantity);
+                //check the property
+                if (AnOrder.Dispatched != true)
+                {
+                    OK = false;
+                }
+                //test to see that the result is correct
+                Assert.IsTrue(OK);
+
+
             }
-            //test to see that the result is correct
-            Assert.IsTrue(OK);
-
-
         }
     }
-    }
+}
 
 
 
