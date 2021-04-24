@@ -16,20 +16,34 @@ public partial class _1_DataEntry : System.Web.UI.Page
     protected void btnOK_Click(object sender, EventArgs e)
     {
         //create a new  instance of clsStaff
-        clsStaff AStaff = new clsStaff
-        {
-            //capture the name
-            StaffID = Convert.ToInt32(txtStaffID.Text),
-            Name = txtName.Text,
-            Surname = txtSurname.Text,
-            DateofBirth = Convert.ToDateTime(txtDob.Text),
-            PhoneNumber = txtPhoneNumber.Text,
-        };
+        clsStaff AStaff = new clsStaff();
+        //capture the name
 
-        //store the name in the session object
-        Session["AStaff"] = AStaff;
-        //navigate to the viewer page
-        Response.Redirect("StaffViewer.aspx");
+        string StaffID = txtStaffID.Text;
+        string Name = txtName.Text;
+        string Surname = txtSurname.Text;
+        string DateofBirth = txtDob.Text;
+        string PhoneNumber = txtPhoneNumber.Text;
+        string Error = "";
+        Error = AStaff.Valid(Name, Surname, DateofBirth, PhoneNumber);
+
+        if (Error == "")
+        {
+            AStaff.StaffID = Convert.ToInt32(StaffID);
+            AStaff.Name = Name;
+            AStaff.Surname = Surname;
+            AStaff.DateofBirth = Convert.ToDateTime(DateofBirth);
+            AStaff.PhoneNumber = PhoneNumber;
+            //store the name in the session object
+            Session["AStaff"] = AStaff;
+            //navigate to the viewer page
+            Response.Redirect("StaffViewer.aspx");
+        }
+        else
+        {
+            //display the error message
+            lblError.Text = Error;
+        }
     }
 
 
