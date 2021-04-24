@@ -14,7 +14,7 @@ namespace ClassLibrary
             {
                 return mQuantity;
             }
-    set
+                 set
             {
                 mQuantity = value;
             }
@@ -44,24 +44,38 @@ namespace ClassLibrary
         {
             String Error = "";
             DateTime DateTemp;
-            if (bookName.Length == 0)
+            if (bookName.Length < 2) //min
             {
-                Error = Error + "The book name cannot be blank: ";
+                Error = Error + "The book name cannot be shorter than 2 characters: ";
             }
 
-            if (bookName.Length > 60)
+            if (bookName.Length > 61) //max
 
             {
                 Error = Error + "The book name must be less than 60 characters: ";
 
 
             }
-            DateTemp = Convert.ToDateTime(OrderDate);
-            if (DateTemp < DateTime.Now.Date)
+
+            if (quantity.Length == 0)
             {
-                Error = Error + "The date cannot be in the past : ";
+                Error = Error + "The quantity cannot be blank: ";
             }
 
+            if (quantity.Length > 100)
+
+            {
+                Error = Error + "The quantity must be less than 3 digits: ";
+
+
+            }
+
+           
+
+
+
+            DateTemp = Convert.ToDateTime(OrderDate);
+           
             if (DateTemp > DateTime.Now.Date)
             {
                 Error = Error + "The date cannot be in the future : ";
