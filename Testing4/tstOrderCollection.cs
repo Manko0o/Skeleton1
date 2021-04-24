@@ -8,11 +8,10 @@ namespace Testing4
     [TestClass]
     public class tstOrderCollection
     {
-        public string SomeCountsTwo { get; private set; }
+       
 
         [TestMethod]
         public void InstanceOK()
-
         {
             clsOrderCollection AllOrder = new clsOrderCollection();
             Assert.IsNotNull(AllOrder);

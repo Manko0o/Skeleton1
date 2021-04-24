@@ -24,7 +24,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         string OrderDate = txtOrderDate.Text;
         string Price = txtPrice.Text;
         string Error = "";
-        Error = AnOrder.Valid(OrderNo, BookName, Quantity, OrderDate, Price);
+        Error = AnOrder.Valid(BookName, Quantity, OrderDate, Price);
         if (Error == "")
 
         {
@@ -34,7 +34,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AnOrder.OrderDate = Convert.ToDateTime(OrderDate);
             AnOrder.Price = Convert.ToInt32(Price);
             Session["AnOrder"] = AnOrder;
-            Response.Write("OrderViewer.aspx");
+            Response.Redirect("OrdersViewer.aspx");
         }
         else
         {

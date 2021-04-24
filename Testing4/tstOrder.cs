@@ -22,7 +22,7 @@ namespace Test_Framework
         public void ValidMethodOK()
         {
             clsOrder AnOrder = new clsOrder();
-            string Error = "";
+            String Error = "";
             Error = AnOrder.Valid(BookName, Quantity, OrderDate, Price);
             Assert.AreEqual(Error, "");
         }
@@ -31,17 +31,17 @@ namespace Test_Framework
         public void BookNameMinOne()
         {
             clsOrder AnOrder = new clsOrder();
-            string Error = "";
+            String Error = "";
             string BookName = "";
             Error = AnOrder.Valid(BookName, Quantity, OrderDate, Price);
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
 
         [TestMethod]
         public void BookNameMinPlusOne()
         {
             clsOrder AnOrder = new clsOrder();
-            string Error = "";
+            String Error = "";
             string BookName = "bb";
             Error = AnOrder.Valid(BookName, Quantity, OrderDate, Price);
             Assert.AreEqual(Error, "");
@@ -52,7 +52,7 @@ namespace Test_Framework
         public void BookNameMaxLessOne()
         {
             clsOrder AnOrder = new clsOrder();
-            string Error = "";
+            String Error = "";
             string BookName = "bbbbb";
             Error = AnOrder.Valid(BookName, Quantity, OrderDate, Price);
             Assert.AreEqual(Error, "");
@@ -62,8 +62,9 @@ namespace Test_Framework
         public void BookNameMax()
         {
             clsOrder AnOrder = new clsOrder();
-            string Error = "";
-            string BookName = "bbbbbb";
+            String Error = "";
+            string BookName = "";
+            BookName = BookName.PadRight(60, 'a');
             Error = AnOrder.Valid(BookName, Quantity, OrderDate, Price);
             Assert.AreEqual(Error, "");
         }
@@ -92,11 +93,13 @@ namespace Test_Framework
             //string variable to store any error message
             String Error = "";
             //create some test data to pass to the method
-            string BookName = "aaaaaaaa"; //this should be ok
+            string BookName = ""; //this should be ok
+            BookName = BookName.PadRight(61, 'a');
+
             //invoke the method
             Error = AnOrder.Valid(BookName, Quantity, OrderDate, Price);
             //test to see that the result is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
 
 
@@ -108,12 +111,12 @@ namespace Test_Framework
             //string variable to store any error message
             String Error = "";
             //create some test data to pass to the method
-            string BookName = "aaaaaaaa"; //this should be ok
+            string BookName = "aaaaaaaa"; 
             BookName = BookName.PadRight(500, 'b');
             //invoke the method
             Error = AnOrder.Valid(BookName, Quantity, OrderDate, Price);
             //test to see that the result is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
 
    
@@ -130,7 +133,7 @@ namespace Test_Framework
             //invoke the method
             Error = AnOrder.Valid(BookName, Quantity, OrderDate, Price);
             //test to see that the result is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
 
         [TestMethod]
@@ -208,7 +211,7 @@ namespace Test_Framework
             //invoke the method
             Error = AnOrder.Valid(BookName, Quantity, OrderDate, Price);
             //test to see that the result is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
 
         }
 
@@ -240,7 +243,7 @@ namespace Test_Framework
             //invoke the method
             Error = AnOrder.Valid(BookName, Quantity, OrderDate, Price);
             //test to see that the result is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
 
         [TestMethod]
