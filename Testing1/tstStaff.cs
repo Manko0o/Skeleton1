@@ -348,7 +348,7 @@ namespace Testing1
             String Error = "";
             //this should fail
             string Name = ""; //this should be ok
-            Name = Name.PadRight(50, 'a');
+            Name = Name.PadRight(51, 'a');
             //invoke the method
             Error = AStaff.Valid(Name, Surname, DateofBirth, PhoneNumber);
             //test to see that the result is correct
