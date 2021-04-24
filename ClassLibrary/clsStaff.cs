@@ -114,7 +114,7 @@ namespace ClassLibrary
 
             }
 
-            if (name.Length > 50)
+            if (name.Length > 51)
             {
                 Error = Error + "The name cannot be longer than 50 characters : ";
 
@@ -126,7 +126,7 @@ namespace ClassLibrary
 
             }
 
-            if (surname.Length > 50)
+            if (surname.Length > 51)
             {
                 Error = Error + "The surname cannot be longer than 50 characters : ";
 
