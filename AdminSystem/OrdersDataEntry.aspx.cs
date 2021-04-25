@@ -28,25 +28,39 @@ public partial class _1_DataEntry : System.Web.UI.Page
         if (Error == "")
 
         {
+            
+
+
+
+
             AnOrder.OrderNo = Convert.ToInt32(OrderNo);
             AnOrder.BookName = BookName;
             AnOrder.Quantity = Convert.ToInt32(Quantity);
             AnOrder.OrderDate = Convert.ToDateTime(OrderDate);
             AnOrder.Price = Convert.ToInt32(Price);
-            Session["AnOrder"] = AnOrder;
-            Response.Redirect("OrdersViewer.aspx");
+            AnOrder.Dispatched = chkDispatched.Checked;
+
+            clsOrderCollection OrderList = new clsOrderCollection();
+            OrderList.ThisOrder = AnOrder;
+            OrderList.Add();
+
+            Response.Redirect("OrdersList.aspx");
+
+
+           // Session["AnOrder"] = AnOrder;
+         //   Response.Redirect("OrdersViewer.aspx");
         }
         else
         {
-
-        }
-        {
             lblError.Text = Error;
-
-
-
-
         }
+        
+            
+
+
+
+
+        
     }
 
 

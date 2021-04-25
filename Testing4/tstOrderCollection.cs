@@ -87,6 +87,24 @@ namespace Testing4
 
         }
 
+        [TestMethod]
+        public void AddMethodOK()
+        {
+            clsOrderCollection AllOrder = new clsOrderCollection();
+            clsOrder TestItem = new clsOrder();
+            Int32 PrimaryKey = 0;
+            TestItem.OrderNo = 1;
+            TestItem.BookName = "The Good Times";
+            TestItem.Quantity = 2;
+            TestItem.OrderDate = DateTime.Now.Date;
+            TestItem.Price = 20;
+            TestItem.Dispatched = true;
+            AllOrder.ThisOrder = TestItem;
+            PrimaryKey = AllOrder.Add();
+            AllOrder.ThisOrder.Find(PrimaryKey);
+            Assert.AreEqual(AllOrder.ThisOrder, TestItem);
+        }
+
        
 
 

@@ -24,9 +24,15 @@ public partial class _1_List : System.Web.UI.Page
         lstOrder.DataTextField = "BookName";
         lstOrder.DataBind();
     }
-   
 
 
 
 
+
+
+    protected void btnAdd_Click(object sender, EventArgs e)
+    {
+        Session["OrderNo"] = -1;
+        Response.Redirect("OrdersDataEntry.aspx");
+    }
 }
