@@ -6,6 +6,7 @@ namespace ClassLibrary
     public class clsStaffCollection
     {
         List<clsStaff> mStaffList = new List<clsStaff>();
+        clsStaff mThisStaff = new clsStaff();
         public List<clsStaff> StaffList
         {
             get
@@ -17,8 +18,17 @@ namespace ClassLibrary
                 mStaffList = value;
             }
         }
-        public clsStaff ThisStaff { get; set; }
-
+        public clsStaff ThisStaff
+        {
+            get
+            {
+                return mThisStaff;
+            }
+            set
+            {
+                mThisStaff = value;
+            }
+        }
         public int Count
         {
             get
@@ -56,6 +66,19 @@ namespace ClassLibrary
                 Index++;
             }
 
+        }
+
+        public int Add()
+        {
+            clsDataConnection DB = new clsDataConnection();
+
+            DB.AddParameter("@Name", mThisStaff.Name);
+            DB.AddParameter("@Surname", mThisStaff.Surname);
+            DB.AddParameter("@PhoneNumber", mThisStaff.PhoneNumber);
+            DB.AddParameter("@DateOfBirth", mThisStaff.DateofBirth);
+            DB.AddParameter("@Availability", mThisStaff.Availability);
+
+            return DB.Execute("sproc_tblStaffManagement_Insert");
         }
     }
 }
