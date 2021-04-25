@@ -86,5 +86,27 @@ namespace Testing1
             Assert.AreEqual(AllStaff.Count, TestList.Count);
         }
 
+        [TestMethod]
+        public void AddMethodOK()
+        {
+            clsStaffCollection AllStaff = new clsStaffCollection();
+
+            clsStaff TestItem = new clsStaff();
+            Int32 PrimaryKey = 0;
+            TestItem.Availability = true;
+            TestItem.DateofBirth = Convert.ToDateTime("15/01/2001");
+            TestItem.Name = "Filip";
+            TestItem.Surname = "Kobeszko";
+            TestItem.PhoneNumber = "07387666666";
+            TestItem.StaffID = 1;
+
+
+            AllStaff.ThisStaff = TestItem;
+            PrimaryKey = AllStaff.Add();
+            TestItem.StaffID = PrimaryKey;
+            AllStaff.ThisStaff.Find(PrimaryKey);
+            Assert.AreEqual(AllStaff.ThisStaff, TestItem);
+        }
+
     }
 }

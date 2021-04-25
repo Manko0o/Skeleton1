@@ -34,10 +34,13 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AStaff.Surname = Surname;
             AStaff.DateofBirth = Convert.ToDateTime(DateofBirth);
             AStaff.PhoneNumber = PhoneNumber;
+            AStaff.Availability = chkAvailability.Checked;
             //store the name in the session object
-            Session["AStaff"] = AStaff;
+            clsStaffCollection StaffList = new clsStaffCollection();
+            StaffList.ThisStaff = AStaff;
+            StaffList.Add();
             //navigate to the viewer page
-            Response.Redirect("StaffViewer.aspx");
+            Response.Redirect("StaffList.aspx");
         }
         else
         {
