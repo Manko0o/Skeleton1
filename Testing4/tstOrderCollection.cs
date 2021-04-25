@@ -59,9 +59,9 @@ namespace Testing4
         }
 
 
-        
 
-      
+
+
 
 
         [TestMethod]
@@ -105,9 +105,40 @@ namespace Testing4
             Assert.AreEqual(AllOrder.ThisOrder, TestItem);
         }
 
-       
+        public void UpdateMethodOK()
+        {
+            clsOrderCollection AllOrder = new clsOrderCollection();
+            clsOrder TestItem = new clsOrder();
+            Int32 PrimaryKey = 0;
+            TestItem.BookName = "The Good Times";
+            TestItem.Quantity = 2;
+            TestItem.OrderDate = DateTime.Now.Date;
+            TestItem.Price = 20;
+            TestItem.Dispatched = true;
+            AllOrder.ThisOrder = TestItem;
+            PrimaryKey = AllOrder.Add();
+
+            TestItem.OrderNo = PrimaryKey;
+            TestItem.BookName = "In The Name Of 2020";
+            TestItem.Quantity = 1;
+            TestItem.OrderDate = DateTime.Now.Date;
+            TestItem.Price = 10;
+            TestItem.Dispatched = false;
+            AllOrder.ThisOrder = TestItem;
+            AllOrder.Update();
+            AllOrder.ThisOrder.Find(PrimaryKey);
+            Assert.AreEqual(AllOrder.ThisOrder, TestItem);
 
 
 
+
+
+
+
+
+
+
+
+        }
     }
 }

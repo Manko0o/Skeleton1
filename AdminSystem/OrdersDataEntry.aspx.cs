@@ -7,17 +7,39 @@ using System.Web.UI.WebControls;
 using ClassLibrary;
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    Int32 OrderNo;
     protected void Page_Load(object sender, EventArgs e)
     {
 
-        
+        OrderNo = Convert.ToInt32(Session["OrderNo"]);
+        if (IsPostBack == false)
+        {
+            if (OrderNo != -1)
+            {
+                DisplayOrders();
+            }
+        }
     }
+
+    private void DisplayOrders()
+    {
+        clsOrderCollection OrderBook = new clsOrderCollection();
+        OrderBook.ThisOrder.Find(OrderNo);
+        txtBookName.Text = OrderBook.ThisOrder.BookName.ToString();
+        txtQuantity.Text = OrderBook.ThisOrder.Quantity.ToString();
+        txtOrderDate.Text = OrderBook.ThisOrder.OrderDate.ToString();
+        txtPrice.Text = OrderBook.ThisOrder.Price.ToString();
+        chkDispatched.Checked = OrderBook.ThisOrder.Dispatched;
+
+    }
+
+
 
     protected void btnOk_Click(object sender, EventArgs e)
     {
         //create a new instance of clsOrder
         clsOrder AnOrder = new clsOrder();
-    
+
         string OrderNo = txtOrderNo.Text;
         string BookName = txtBookName.Text;
         string Quantity = txtQuantity.Text;
@@ -28,10 +50,6 @@ public partial class _1_DataEntry : System.Web.UI.Page
         if (Error == "")
 
         {
-            
-
-
-
 
             AnOrder.OrderNo = Convert.ToInt32(OrderNo);
             AnOrder.BookName = BookName;
@@ -41,27 +59,53 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AnOrder.Dispatched = chkDispatched.Checked;
 
             clsOrderCollection OrderList = new clsOrderCollection();
-            OrderList.ThisOrder = AnOrder;
-            OrderList.Add();
+            if (OrderNo == "-1")
+            {
 
+                OrderList.ThisOrder = AnOrder;
+                OrderList.Add();
+            }
+
+
+            else
+            {
+
+                OrderList.ThisOrder.Find(OrderNo);
+                OrderList.ThisOrder = AnOrder;
+                OrderList.Update();
+
+            }
             Response.Redirect("OrdersList.aspx");
-
-
-           // Session["AnOrder"] = AnOrder;
-         //   Response.Redirect("OrdersViewer.aspx");
         }
         else
         {
-            lblError.Text = Error;
+            lblError.Text = "Invalid";
         }
-        
-            
+    
 
 
 
 
-        
-    }
+
+
+
+            // OrderList.ThisOrder = AnOrder;
+            //  OrderList.Add();
+
+            //  Response.Redirect("OrdersList.aspx");
+
+
+            // Session["AnOrder"] = AnOrder;
+            //   Response.Redirect("OrdersViewer.aspx");
+
+
+
+
+
+
+
+
+        }
 
 
       
