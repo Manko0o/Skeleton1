@@ -8,7 +8,7 @@ namespace Testing4
     [TestClass]
     public class tstOrderCollection
     {
-       
+        public object ThisOrder { get; private set; }
 
         [TestMethod]
         public void InstanceOK()
@@ -40,32 +40,28 @@ namespace Testing4
 
         }
 
-
         [TestMethod]
-        public void CountOnePropertyOK()
+        public void ThisOrderProperty()
 
         {
             clsOrderCollection AllOrder = new clsOrderCollection();
             //this is to create some test data, so that it is assigned to property
-            Int32 SomeCounts = 2;
-            AllOrder.Count = SomeCounts;
-            Assert.AreEqual(AllOrder.Count, SomeCounts);
- 
+            //properties
+            clsOrder TestOrder = new clsOrder();
+            TestOrder.OrderNo = 1;
+            TestOrder.BookName = "The Good Times";
+            TestOrder.Quantity = 2;
+            TestOrder.OrderDate = DateTime.Now.Date;
+            TestOrder.Price = 20;
+            TestOrder.Dispatched = true;
+            AllOrder.ThisOrder = TestOrder;
+            Assert.AreEqual(AllOrder.ThisOrder, TestOrder);
         }
 
-        [TestMethod]
-        public void CountPropertiesOK()
 
-        {
-            clsOrderCollection AllOrder = new clsOrderCollection();
-            //this is to create some test data, so that it is assigned to property
-            Int32 SomeCounts = 0;
-            Int32 SomeCountsTwo = 0;
-            AllOrder.Count = SomeCounts;
-            AllOrder.Count = SomeCountsTwo;
-            Assert.AreEqual(AllOrder.Count, SomeCounts, SomeCountsTwo);
+        
 
-        }
+      
 
 
         [TestMethod]
