@@ -35,4 +35,20 @@ public partial class _1_List : System.Web.UI.Page
         Session["OrderNo"] = -1;
         Response.Redirect("OrdersDataEntry.aspx");
     }
+
+    protected void btnEdit_Click(object sender, EventArgs e)
+    {
+        Int32 OrderNo;
+        if (lstOrder.SelectedIndex != -1)
+        {
+            OrderNo = Convert.ToInt32(lstOrder.SelectedValue);
+            Session["OrderNo"] = OrderNo;
+            Response.Redirect("OrdersDataEntry.aspx");
+
+        }
+        else
+        {
+            lblError.Text = "Please select a record, so that it can be deleted from the list";
+        }
+    }
 }
