@@ -48,7 +48,39 @@ public partial class _1_List : System.Web.UI.Page
         }
         else
         {
-            lblError.Text = "Please select a record, so that it can be deleted from the list";
+            lblError.Text = "Please select a record, so that it can be edited from the list";
+        }
+    }
+
+    protected void btnDelete_Click(object sender, EventArgs e)
+    {
+        Int32 OrderNo;
+        if (lstOrder.SelectedIndex != -1)
+        {
+            OrderNo = Convert.ToInt32(lstOrder.SelectedValue);
+            Session["OrderNo"] = OrderNo;
+            Response.Redirect("DeleteOrder.aspx");
+
+        }
+        else
+        {
+            lblError.Text = "Please select a record, which you want to delete from the list";
+        }
+    }
+
+    protected void btnDelete_Click1(object sender, EventArgs e)
+    {
+        Int32 OrderNo;
+        if (lstOrder.SelectedIndex != -1)
+        {
+            OrderNo = Convert.ToInt32(lstOrder.SelectedValue);
+            Session["OrderNo"] = OrderNo;
+            Response.Redirect("DeleteOrder.aspx");
+
+        }
+        else
+        {
+            lblError.Text = "Please select a record, which you want to delete from the list";
         }
     }
 }
