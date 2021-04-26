@@ -15,22 +15,47 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     protected void btnOK_Click(object sender, EventArgs e)
     {
-
+        //create a new instance of clsStock
         clsStock AStock = new clsStock();
+        //capture the product Id
+        string ProductID = txtProductID.Text;
+        //capture the bookname
+        string BookName = txtBookName.Text;
+        //capture the author name
+        string AuthorName = txtAuthorName.Text;
+        //capture the price
+        string Price = txtPrice.Text;
+        //capture the publish date
+        string PublishDate = txtPublishedDate.Text;
+        //variable to store any error messages
+        string Error = "";
+        //validate the error
+        Error = AStock.Valid(BookName, AuthorName, Price, PublishDate);
+        if (Error == "")
+        {
+            //capture the product Id
+            AStock.ProductID = Convert.ToInt32(txtProductID.Text);
+            //capture the bookname
+            AStock.BookName = txtBookName.Text;
+            //capture the author name
+            AStock.AuthorName = txtAuthorName.Text;
+            //capture the price
+            AStock.Price = Convert.ToDouble(txtPrice.Text);
+            //capture the publish date
+            AStock.PublishDate = Convert.ToDateTime("09/02/2021");
+            //  AStock.Available = bool.Parse(chkAvailable.Text);
 
-        AStock.ProductID = Convert.ToInt32(txtProductID.Text);
-        AStock.BookName = txtBookName.Text;
-        AStock.AuthorName = txtAuthorName.Text;
-        AStock.Price = Convert.ToDouble(txtPrice.Text);
-        AStock.PublishDate = Convert.ToDateTime("09/02/2021");
-        //  AStock.Available = bool.Parse(chkAvailable.Text);
+            Session["AStock"] = AStock;
 
-        Session["AStock"] = AStock;
-
-        // navigate to the viewer page
-        Response.Redirect("StockViewer.aspx");
+            // navigate to the viewer page
+            Response.Write("StockViewer.aspx");
+        }
+        else
+        {
+            //display the error message
+            lblError.Text = Error;
+        }
     }
-
     protected void TextBox1_TextChanged(object sender, EventArgs e)
     {
 
