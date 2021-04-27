@@ -86,6 +86,28 @@ namespace Testing3
             //test to see that the two values are the same
             Assert.AreEqual(AllStocks.Count, TestList.Count);
         }
-      
+
+        [TestMethod]
+        public void AddMethodOK()
+        {
+            //create an instance fof the class we want to create 
+            clsStockCollection AllStocks = new clsStockCollection();
+            //create some test data to assign to the property
+            clsStock TestItem = new clsStock();
+            Int32 Primarykey = 0;
+            TestItem.Available = true;
+            TestItem.ProductID = 1;
+            TestItem.BookName = "Unfinished";
+            TestItem.AuthorName = "Priyanka Chopra";
+            TestItem.Price = 11;
+            TestItem.PublishDate =Convert.ToDateTime("09/02/2021");
+
+            AllStocks.ThisStock = TestItem;
+            Primarykey = AllStocks.Add();
+            TestItem.ProductID = Primarykey;
+            AllStocks.ThisStock.Find(Primarykey);
+            Assert.AreEqual(AllStocks.ThisStock, TestItem);
         }
+        
     }
+}

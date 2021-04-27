@@ -5,6 +5,7 @@ namespace ClassLibrary
 {
     public class clsStaffCollection
     {
+
         List<clsStaff> mStaffList = new List<clsStaff>();
         clsStaff mThisStaff = new clsStaff();
         public List<clsStaff> StaffList
