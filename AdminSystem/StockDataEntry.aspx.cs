@@ -43,12 +43,12 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AStock.Price = Convert.ToDouble(txtPrice.Text);
             //capture the publish date
             AStock.PublishDate = Convert.ToDateTime("09/02/2021");
-            //  AStock.Available = bool.Parse(chkAvailable.Text);
+            AStock.Available = chkAvailable.Checked;
+            clsStockCollection StockList = new clsStockCollection();
+            StockList.ThisStock = AStock;
+            StockList.Add();
+            Response.Redirect("StockList.aspx");
 
-            Session["AStock"] = AStock;
-
-            // navigate to the viewer page
-            Response.Write("StockViewer.aspx");
         }
         else
         {

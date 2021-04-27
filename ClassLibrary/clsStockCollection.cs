@@ -7,6 +7,7 @@ namespace ClassLibrary
     {
         //private data member for the list
         List<clsStock> mStockList = new List<clsStock>();
+        clsStock mThisStock = new clsStock();
         public List<clsStock> StockList
         {
             get
@@ -49,30 +50,19 @@ namespace ClassLibrary
                 Index++;
             }
 
-           /* //create the items of the tests of test data
-            clsStock TestItem = new clsStock();
-            //set its properties
-            TestItem.Available = true;
-            TestItem.ProductID = 1;
-            TestItem.BookName = "Unfinished";
-            TestItem.AuthorName = "Priyanka Chopra";
-            TestItem.Price = 11;
-            TestItem.PublishDate = DateTime.Now.Date;
-            //add the item to the test list
-            mStockList.Add(TestItem);
-            //re initialise the object for some data
-            TestItem = new clsStock();
-            //set its properties
-            TestItem.Available = true;
-            TestItem.ProductID = 1;
-            TestItem.BookName = "Unfinished";
-            TestItem.AuthorName = "Priyanka Chopra";
-            TestItem.Price = 11;
-            TestItem.PublishDate = DateTime.Now.Date;
-            //add the item to the test list
-            mStockList.Add(TestItem); */
+           
 
-
+        }
+        public clsStock ThisStock
+        {
+            get
+            {
+                return mThisStock;
+            }
+            set
+            {
+                mThisStock = value;
+            }
         }
         public int Count
         {
@@ -86,6 +76,21 @@ namespace ClassLibrary
                 //we shall worry about this later
             }
         }
-        public object ThisStock { get; set; }
+        
+
+        public int Add()
+        {
+            //adds a new record to the database based on the values of ThisStock
+            //connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            //set parameters for the stored procedure
+            DB.AddParameter("@Available", mThisStock.Available);
+            DB.AddParameter("@BookName", mThisStock.BookName);
+            DB.AddParameter("@AuthorName", mThisStock.AuthorName);
+            DB.AddParameter("@Price", mThisStock.Price);
+            DB.AddParameter("@PublishDate", mThisStock.PublishDate);
+            //execute the querry returnining the primary key value
+            return DB.Execute("sproc_tblStockManagement_Insert");
+        }
     }
 }
