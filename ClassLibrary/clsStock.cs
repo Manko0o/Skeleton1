@@ -90,7 +90,7 @@ namespace ClassLibrary
         {
             clsDataConnection DB = new clsDataConnection();
             DB.AddParameter("@ProductID", ProductID);
-            DB.Execute("sproc_tblStock_FilterByProductID");
+            DB.Execute("sproc_tblStockManagement_FilterByProductID");
             if (DB.Count == 1)
             {
                 //set the private data members to the test data value
@@ -125,10 +125,10 @@ namespace ClassLibrary
                 Error = Error + "The BookName should not be blank : ";
             }
             //if the Bookname is greater than 20 characters 
-            if (bookName.Length > 20 )
+            if (bookName.Length > 50 )
             {
                 //record the error
-                Error = Error + "The BookName must be less than 20 Characters : ";
+                Error = Error + "The BookName must be less than 50 Characters : ";
             }
             if (authorName.Length == 0)
             {
@@ -136,20 +136,15 @@ namespace ClassLibrary
                 Error = Error + "The AuthorName should not be blank : ";
             }
             //if the Bookname is greater than 20 characters 
-            if (authorName.Length > 20)
+            if (authorName.Length > 50)
             {
                 //record the error
-                Error = Error + "The AuthorName must be less than 20 Characters : ";
+                Error = Error + "The AuthorName must be less than 50 Characters : ";
             }
             //copy the dateAdded value to the DateTemp varaible
             try
             {
                 DateTemp = Convert.ToDateTime(publishDate);
-                if (DateTemp < DateTime.Now.Date)
-                {
-                    //record error
-                    Error = Error + "The date cannot be in the past : ";
-                }
                 //check to see if the date is greater than today's date
                 if (DateTemp > DateTime.Now.Date)
                 {

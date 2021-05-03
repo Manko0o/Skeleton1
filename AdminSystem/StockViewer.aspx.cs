@@ -17,6 +17,6 @@ public partial class _1Viewer : System.Web.UI.Page
         Response.Write(AStock.AuthorName);
         Response.Write(AStock.Price);
         Response.Write(AStock.PublishDate);
-        Response.Write(AStock.Available);
+       // Response.Write(AStock.Available);
     }
 }

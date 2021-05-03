@@ -7,32 +7,73 @@ using System.Web.UI.WebControls;
 using ClassLibrary;
 public partial class _1_List : System.Web.UI.Page
 {
+    Int32 ProductID;
     protected void Page_Load(object sender, EventArgs e)
     {
-        //if this is the first time the page is displayed
+       // ProductID = Convert.ToInt32(Session["ProductID"]);
         if (IsPostBack == false)
         {
-            //update the list box
-            DisplayStocks();
+            
+            {
+                //update the list box
+                DisplayStocks();
+            }
         }
-
     }
+
     void DisplayStocks()
     {
-        //create an instance of the Country Collection
-        clsStockCollection Stocks = new clsStockCollection();
-        //set the data source to the list of countries in the collection
-        lstStocks.DataSource = Stocks.StockList;
-        //set the name of the primary key
-        lstStocks.DataValueField = "ProductId";
+        clsStockCollection Stock = new clsStockCollection();
+        Stock.ThisStock.Find(ProductID);
+        lstStocks.DataSource = Stock.StockList;
+        lstStocks.DataValueField = "ProductID";
         lstStocks.DataTextField = "BookName";
         lstStocks.DataBind();
-        
     }
 
-    protected void btnAdd_Click(object sender, EventArgs e)
+    protected void btnEdit_Click(object sender, EventArgs e)
+    {
+        Int32 ProductId;
+        if (lstStocks.SelectedIndex != -1)
+        {
+            ProductId = Convert.ToInt32(lstStocks.SelectedValue);
+            Session["ProductID"] = ProductId;
+            Response.Redirect("StockDataEntry.aspx");
+
+        }
+        else
+        {
+            lblError.Text = "Please select a record, so that it can be edited from the list";
+        }
+    }
+
+    
+
+    protected void btnDelete_Click(object sender, EventArgs e)
+    {
+        Int32 ProductId;
+        if (lstStocks.SelectedIndex != -1)
+        {
+            ProductId = Convert.ToInt32(lstStocks.SelectedValue);
+            Session["ProductID"] = ProductId;
+            Response.Redirect("DeleteStock.aspx");
+        }
+        else
+        {
+            lblError.Text = "Please select a record to delete from the list";
+                }
+    }
+
+    protected void btnAdd_Click1(object sender, EventArgs e)
     {
         Session["ProductId"] = -1;
-        Response.Redirect("StaffDataEntry.aspx");
+        Response.Redirect("StockDataEntry.aspx");
+    }
+
+    protected void lstStocks_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
     }
 }
+
+

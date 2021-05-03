@@ -70,4 +70,14 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtDob.Text = AStaff.DateofBirth.ToString();
         }
     }
+
+    protected void txtDob_TextChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void txtStaffID_TextChanged(object sender, EventArgs e)
+    {
+
+    }
 }

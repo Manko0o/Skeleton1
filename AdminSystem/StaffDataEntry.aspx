@@ -10,7 +10,7 @@
     <form id="form1" runat="server">
         <div style="height: 378px">
             <asp:Label ID="lblStaffID" runat="server" Text="StaffID" width="92px"></asp:Label>
-&nbsp;<asp:TextBox ID="txtStaffID" runat="server" Height="22px" TextMode="Number"></asp:TextBox>
+&nbsp;<asp:TextBox ID="txtStaffID" runat="server" Height="22px" TextMode="Number" OnTextChanged="txtStaffID_TextChanged"></asp:TextBox>
             <asp:Button ID="btnFind" runat="server" OnClick="btnFind_Click" Text="Find" />
             <br />
             <br />
@@ -23,7 +23,7 @@
             <br />
             <br />
             <asp:Label ID="lblDob" runat="server" Text="Date of birth" width="92px"></asp:Label>
-&nbsp;<asp:TextBox ID="txtDob" runat="server" TextMode="DateTime"></asp:TextBox>
+&nbsp;<asp:TextBox ID="txtDob" runat="server" TextMode="DateTime" OnTextChanged="txtDob_TextChanged"></asp:TextBox>
             <br />
             <br />
             <asp:Label ID="lblPhoneNumber" runat="server" Text="Phone Number"></asp:Label>
