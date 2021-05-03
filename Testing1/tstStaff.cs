@@ -270,7 +270,7 @@ namespace Testing1
             //invoke the method
             Error = AStaff.Valid(Name, Surname, DateofBirth, PhoneNumber);
             //test to see that the result is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
 
         [TestMethod]

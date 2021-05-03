@@ -30,10 +30,11 @@ namespace ClassLibrary
             Int32 RecordCount = 0;
             //object for the data connection
             clsDataConnection DB = new clsDataConnection();
+            DB.Execute("sproc_tblStockManagement_Selectall");
             //get the count of records
             RecordCount = DB.Count;
             //while there are records to process
-            while (Index <RecordCount)
+            while (Index < RecordCount)
             {
                 //create a blank address
                 clsStock AStock = new clsStock();
@@ -49,9 +50,6 @@ namespace ClassLibrary
                 //point at the next record
                 Index++;
             }
-
-           
-
         }
         public clsStock ThisStock
         {
@@ -92,5 +90,39 @@ namespace ClassLibrary
             //execute the querry returnining the primary key value
             return DB.Execute("sproc_tblStockManagement_Insert");
         }
+        public int Update()
+        {
+            //Updates an existing record to  the database based on the values of ThisStock
+            //connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            //set parameters for the stored procedure
+            DB.AddParameter("@ProductID", mThisStock.ProductID);
+            DB.AddParameter("@Available", mThisStock.Available);
+            DB.AddParameter("@BookName", mThisStock.BookName);
+            DB.AddParameter("@AuthorName", mThisStock.AuthorName);
+            DB.AddParameter("@Price", mThisStock.Price);
+            DB.AddParameter("@PublishDate", mThisStock.PublishDate);
+            //execute the querry returnining the primary key value
+            return DB.Execute("sproc_tblStockManagement_Update");
+        }
+
+        public void Delete()
+        {
+           clsDataConnection DB = new clsDataConnection();
+            //set parameters for the stored procedure
+            DB.AddParameter("@ProductID", mThisStock.ProductID);
+            //execute the querry returnining the primary key value
+             DB.Execute("sproc_tblStockManagement_Delete");
+        }
+
+        public void ReportbyProduct(Int32 ProductId)
+
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@ProductID", ProductId);
+            DB.Execute("sproc_tblStockManagement_FilterByProductID");
+        }
     }
-}
+    }
+    
+        

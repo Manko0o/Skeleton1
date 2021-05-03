@@ -108,6 +108,76 @@ namespace Testing3
             AllStocks.ThisStock.Find(Primarykey);
             Assert.AreEqual(AllStocks.ThisStock, TestItem);
         }
-        
+        [TestMethod]
+        public void UpdateMethodOK()
+        {
+            //create an instance fof the class we want to create 
+            clsStockCollection AllStocks = new clsStockCollection();
+            //create some test data to assign to the property
+            clsStock TestItem = new clsStock();
+            Int32 Primarykey = 0;
+            TestItem.Available = true;
+            TestItem.ProductID = 1;
+            TestItem.BookName = "Unfinished";
+            TestItem.AuthorName = "Priyanka Chopra";
+            TestItem.Price = 11;
+            TestItem.PublishDate = Convert.ToDateTime("09/02/2021");
+
+            AllStocks.ThisStock = TestItem;
+            Primarykey = AllStocks.Add();
+            TestItem.ProductID = Primarykey;
+            AllStocks.ThisStock.Find(Primarykey);
+            //modify the data
+            TestItem.Available = false;
+            TestItem.ProductID = 11;
+            TestItem.BookName = "Becoming";
+            TestItem.AuthorName = "Michelle Obama";
+            TestItem.Price = 17;
+            TestItem.PublishDate = Convert.ToDateTime("21/05/2011");
+            AllStocks.ThisStock = TestItem;
+            AllStocks.Update();
+            AllStocks.ThisStock.Find(Primarykey);
+            Assert.AreEqual(AllStocks.ThisStock, TestItem);
+        }
+         [TestMethod]
+         public void DeleteMethodOK()
+         {
+             clsStockCollection AllStocks = new clsStockCollection();
+             clsStock TestItem = new clsStock();
+             Int32 PrimaryKey = 0;
+             TestItem.Available = true;
+             TestItem.ProductID = 1;
+             TestItem.BookName = "Unfinished";
+             TestItem.AuthorName = "Priyanka Chopra";
+             TestItem.Price = 11;
+             TestItem.PublishDate = Convert.ToDateTime("09/02/2021");
+             AllStocks.ThisStock = TestItem;
+             PrimaryKey = AllStocks.Add();
+             TestItem.ProductID = PrimaryKey;
+             AllStocks.ThisStock.Find(PrimaryKey);
+             AllStocks.Delete();
+             Boolean Found = AllStocks.ThisStock.Find(PrimaryKey);
+             Assert.IsFalse(Found);
+             }
+        [TestMethod]
+        public void ReportByProductID()
+        {
+            clsStockCollection AllStocks = new clsStockCollection();
+            clsStockCollection FilteredProducts = new clsStockCollection();
+            FilteredProducts.ReportbyProduct(11);
+            Assert.AreEqual(AllStocks.Count, FilteredProducts.Count);
+
+        }
+        [TestMethod]
+        public void ReportByProductIDNoneFoud()
+        {
+            clsStockCollection FilteredProducts = new clsStockCollection();
+            FilteredProducts.ReportbyProduct(11);
+            Assert.AreEqual(0, FilteredProducts.Count);
+        }
+      }
+   
     }
-}
+        
+    
+

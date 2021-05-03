@@ -68,21 +68,12 @@ namespace Testing3
         }
 
         [TestMethod]
-        public void PublishedDateOK()
-        {
-            clsStock AStock = new clsStock();
-            DateTime TestData = Convert.ToDateTime("09/02/2021");
-            AStock.PublishDate = TestData;
-            Assert.AreEqual(AStock.PublishDate, TestData);
-        }
-
-        [TestMethod]
         public void FindMethodOK()
         {
             //create an instance of the class we want to create
             clsStock AStock = new clsStock();
             Boolean Found = false;
-            Int32 ProductID = 1;
+            Int32 ProductID = 2;
             Found = AStock.Find(ProductID);
             Assert.IsTrue(Found);
         }
@@ -108,11 +99,11 @@ namespace Testing3
             //boolean variable to record if data is OK 
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 ProductID = 1;
+            Int32 ProductID = 2;
             //invoke the methods
             Found = AStock.Find(ProductID);
             //check the Product 
-            if (AStock.ProductID != 1)
+            if (AStock.ProductID != 2)
             {
                 OK = false;
             }
@@ -130,11 +121,11 @@ namespace Testing3
             //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 ProductID = 1;
+            Int32 ProductID = 2;
             //invoke the methods
             Found = AStock.Find(ProductID);
             //check the StaffID 
-            if (AStock.BookName != "Unfinished")
+            if (AStock.BookName != "Riverdale")
             {
                 OK = false;
             }
@@ -151,11 +142,11 @@ namespace Testing3
             //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 ProductID = 1;
+            Int32 ProductID = 2;
             //invoke the methods
             Found = AStock.Find(ProductID);
-            //check the StaffID 
-            if (AStock.AuthorName != "Priyanka Chopra")
+            //check the Stock 
+            if (AStock.AuthorName != "Madeline Cooper")
             {
                 OK = false;
             }
@@ -172,7 +163,7 @@ namespace Testing3
             //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 ProductID = 1;
+            Int32 ProductID = 2;
             //invoke the methods
             Found = AStock.Find(ProductID);
             //check the StaffID 
@@ -194,11 +185,11 @@ namespace Testing3
             //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 ProductID = 1;
+            Int32 ProductID = 2;
             //invoke the methods
             Found = AStock.Find(ProductID);
             //check the StaffID 
-            if (AStock.Price != 11)
+            if (AStock.Price != 7)
             {
                 OK = false;
             }
@@ -206,27 +197,6 @@ namespace Testing3
             Assert.IsTrue(OK);
         }
 
-        [TestMethod]
-        public void PublishDateFound()
-        {
-            //create an instance of the class we want to create
-            clsStock AStock = new clsStock();
-            //Bolean variable to store the results of the validation
-            Boolean Found = false;
-            //boolean variable to record if data is OK (assume it is)
-            Boolean OK = true;
-            //create some test data to use with the method
-            Int32 ProductID = 1;
-            //invoke the methods
-            Found = AStock.Find(ProductID);
-            //check the StaffID 
-            if (AStock.PublishDate != Convert.ToDateTime("09/02/2021"))
-            {
-                OK = false;
-            }
-            //test to see if the result is true
-            Assert.IsTrue(OK);
-        }
         [TestMethod]
         public void BookNameMinLessOne()
         {
@@ -277,7 +247,8 @@ namespace Testing3
             //string variable to store any error message
             String Error = "";
             //create some test data to pass to the method
-            string BookName = "aaaaa"; //this should be ok
+            string BookName = ""; //this should be ok
+            BookName = BookName.PadRight(19, 'a');
             //invoke the method
             Error = AStock.Valid(BookName, AuthorName, Price, PublishDate);
             //test to see that the result is correct
@@ -292,6 +263,7 @@ namespace Testing3
             String Error = "";
             //create some test data to pass to the method
             string BookName = "aaaaaa"; //this should be ok
+            BookName = BookName.PadRight(20, 'a');
             //invoke the method
             Error = AStock.Valid(BookName, AuthorName, Price, PublishDate);
             //test to see that the result is correct
@@ -306,7 +278,8 @@ namespace Testing3
             //string variable to store any error message
             String Error = "";
             //create some test data to pass to the method
-            string BookName = "aaa"; //this should be ok
+            string BookName = ""; //this should be ok
+            BookName = BookName.PadRight(10,'a');
             //invoke the method
             Error = AStock.Valid(BookName, AuthorName, Price, PublishDate);
             //test to see that the result is correct
@@ -320,7 +293,8 @@ namespace Testing3
             //string variable to store any error message
             String Error = "";
             //create some test data to pass to the method
-            string BookName = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"; //this should fail
+            string BookName = ""; //this should fail
+            BookName = BookName.PadRight(51, 'a');
             //invoke the method
             Error = AStock.Valid(BookName, AuthorName, Price, PublishDate);
             //test to see that the result is correct
@@ -334,7 +308,7 @@ namespace Testing3
             //string variable to store any error message
             String Error = "";
             //create some test data to pass to the method
-            string BookName = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"; //this should fail
+            string BookName = ""; //this should fail
             BookName = BookName.PadRight(500, 'a'); //this should fail
             //invoke the method
             Error = AStock.Valid(BookName, AuthorName, Price, PublishDate);
@@ -397,99 +371,38 @@ namespace Testing3
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
+
         [TestMethod]
-        public void PublishDateExtremeMin()
+        public void PublishedDateOK()
+        {
+            clsStock AStock = new clsStock();
+            DateTime TestData = Convert.ToDateTime("09/02/2021");
+            AStock.PublishDate = TestData;
+            Assert.AreEqual(AStock.PublishDate, TestData);
+        }
+
+        [TestMethod]
+        public void PublishDateFound()
         {
             //create an instance of the class we want to create
             clsStock AStock = new clsStock();
-            //string variable to store any error message
-            String Error = "";
-            //create some test data to pass to the method
-            DateTime TestDate;
-            //set the date todays date 
-            TestDate = DateTime.Now.Date;
-            //change the date to whatever the date is less 100years
-            TestDate = TestDate.AddYears(-100);
-            //convert the date variable to a string varaible
-            string PublishDate = TestDate.ToString();
-            //invoke the method
-            Error = AStock.Valid(BookName, AuthorName, Price, PublishDate);
-            //test to see that the result is correct
-            Assert.AreNotEqual(Error, "");
+            //Bolean variable to store the results of the validation
+            Boolean Found = false;
+            //boolean variable to record if data is OK (assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 ProductID = 2;
+            //invoke the methods
+            Found = AStock.Find(ProductID);
+            //check the StaffID 
+            if (AStock.PublishDate != Convert.ToDateTime("20/11/2004"))
+            {
+                OK = false;
+            }
+            //test to see if the result is true
+            Assert.IsTrue(OK);
         }
-        [TestMethod]
-        public void PublishDateMinLessOne()
-        {
-            //create an instance of the class we want to create
-            clsStock AStock = new clsStock();
-            //string variable to store any error message
-            String Error = "";
-            //create a variable to store the test date data
-            DateTime TestDate;
-            //set the date totodays date
-            TestDate = DateTime.Now.Date;
-            //change the date to whatever the date is less 1 day
-            TestDate = TestDate.AddDays(-1);
-            //convert the date variable to a string variable
-            string PublishDate = TestDate.ToString();
-            //invoke the method
-            Error = AStock.Valid(BookName, AuthorName, Price, PublishDate);
-            //test to see that the result is correct
-            Assert.AreNotEqual(Error, "");
-        }
-        [TestMethod]
-        public void AuthorNameExtremeMax()
-        {
-            //create an instance of the class we want to create
-            clsStock AStock = new clsStock();
-            //string variable to store any error message
-            String Error = "";
-            //create some test data to pass to the method
-            string AuthorName = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"; //this should fail
-            BookName = BookName.PadRight(500, 'a'); //this should fail
-            //invoke the method
-            Error = AStock.Valid(BookName, AuthorName, Price, PublishDate);
-            //test to see that the result is correct
-            Assert.AreNotEqual(Error, "");
-        }
-        [TestMethod]
-        public void PublishDateMin()
-        {
-            //create an instance of the class we want to create
-            clsStock AStock = new clsStock();
-            //string variable to store any error message
-            String Error = "";
-            //create a variable to store the test date data
-            DateTime TestDate;
-            //set the date totodays date
-            TestDate = DateTime.Now.Date;
-            //convert the date variable to a string variable
-            string PublishDate = TestDate.ToString();
-            //invoke the method
-            Error = AStock.Valid(BookName, AuthorName, Price, PublishDate);
-            //test to see that the result is correct
-            Assert.AreEqual(Error, "");
-        }
-        [TestMethod]
-        public void PublishDateMinPlusOne()
-        {
-            //create an instance of the class we want to create
-            clsStock AStock = new clsStock();
-            //string variable to store any error message
-            String Error = "";
-            //create a variable to store the test date data
-            DateTime TestDate;
-            //set the date totodays date
-            TestDate = DateTime.Now.Date;
-            //change the date to whatever the date is plus 1 day
-            TestDate = TestDate.AddDays(1);
-            //convert the date variable to a string variable
-            string PublishDate = TestDate.ToString();
-            //invoke the method
-            Error = AStock.Valid(BookName, AuthorName, Price, PublishDate);
-            //test to see that the result is correct
-            Assert.AreNotEqual(Error, "");
-        }
+
         [TestMethod]
         public void PublishDateExtremeMax()
         {
@@ -510,6 +423,69 @@ namespace Testing3
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
+
+        [TestMethod]
+        public void PublishDateMaxLessOne()
+        {
+            //create an instance of the class we want to create
+            clsStock AStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //create a variable to store the test date data
+            DateTime TestDate;
+            //set the date totodays date
+            TestDate = DateTime.Now.Date;
+            //change the date to whatever the date is less 1 day
+            TestDate = TestDate.AddDays(-1);
+            //convert the date variable to a string variable
+            string PublishDate = TestDate.ToString();
+            //invoke the method
+            Error = AStock.Valid(BookName, AuthorName, Price, PublishDate);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void PublishDateMax()
+        {
+            //create an instance of the class we want to create
+            clsStock AStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //create a variable to store the test date data
+            DateTime TestDate;
+            //set the date totodays date
+            TestDate = DateTime.Now.Date;
+            //convert the date variable to a string variable
+            string PublishDate = TestDate.ToString();
+            //invoke the method
+            Error = AStock.Valid(BookName, AuthorName, Price, PublishDate);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void PublishDateMaxPlusOne()
+        {
+            //create an instance of the class we want to create
+            clsStock AStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //create a variable to store the test date data
+            DateTime TestDate;
+            //set the date totodays date
+            TestDate = DateTime.Now.Date;
+            //change the date to whatever the date is plus 1 day
+            TestDate = TestDate.AddDays(1);
+            //convert the date variable to a string variable
+            string PublishDate = TestDate.ToString();
+            //invoke the method
+            Error = AStock.Valid(BookName, AuthorName, Price, PublishDate);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+
         [TestMethod]
         public void PublishDateInvalidData()
         {
@@ -525,6 +501,23 @@ namespace Testing3
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
+
+        [TestMethod]
+        public void AuthorNameExtremeMax()
+        {
+            //create an instance of the class we want to create
+            clsStock AStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string AuthorName = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"; //this should fail
+            BookName = BookName.PadRight(500, 'a'); //this should fail
+            //invoke the method
+            Error = AStock.Valid(BookName, AuthorName, Price, PublishDate);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+        
         [TestMethod]
         public void PriceExtremeMin()
         {
@@ -609,7 +602,7 @@ namespace Testing3
             //string variable to store any error message
             String Error = "";
             //create some test data to pass to the method
-            
+
             string Price = "This is not a price: ";
 
             //invoke the method
@@ -619,4 +612,3 @@ namespace Testing3
         }
     }
 }
-

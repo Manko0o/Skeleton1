@@ -30,4 +30,9 @@ public partial class _1_List : System.Web.UI.Page
         Session["StaffID"] = -1;
         Response.Redirect("StaffDataEntry.aspx");
     }
+
+    protected void lstStaffList_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
 }

@@ -8,11 +8,30 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    /*Int32 ProductID;
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        ProductID = Convert.ToInt32(Session["ProductID"]);
+        if (IsPostBack == false)
+        {
+            if(ProductID != -1)
+            {
+                DisplayStocks();
+            }
+        }
     }
-
+    
+    void DisplayStocks()
+    {
+        clsStockCollection Stock = new clsStockCollection();
+        Stock.ThisStock.Find(ProductID);
+        txtProductID.Text = Stock.ThisStock.ProductID.ToString();
+        txtBookName.Text = Stock.ThisStock.BookName;
+        txtAuthorName.Text = Stock.ThisStock.AuthorName;
+        txtPrice.Text = Stock.ThisStock.Price.ToString();
+        txtPublishedDate.Text = Stock.ThisStock.PublishDate.ToString();
+    }
+    */
     protected void btnOK_Click(object sender, EventArgs e)
     {
         //create a new instance of clsStock
@@ -20,9 +39,9 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //capture the product Id
         string ProductID = txtProductID.Text;
         //capture the bookname
-        string BookName = txtBookName.Text;
+        string BookName = txtBookName.Text.TrimEnd();
         //capture the author name
-        string AuthorName = txtAuthorName.Text;
+        string AuthorName = txtAuthorName.Text.TrimEnd();
         //capture the price
         string Price = txtPrice.Text;
         //capture the publish date
@@ -34,20 +53,34 @@ public partial class _1_DataEntry : System.Web.UI.Page
         if (Error == "")
         {
             //capture the product Id
-            AStock.ProductID = Convert.ToInt32(txtProductID.Text);
+            AStock.ProductID = Convert.ToInt32(ProductID);
             //capture the bookname
-            AStock.BookName = txtBookName.Text;
+            AStock.BookName = BookName;
             //capture the author name
-            AStock.AuthorName = txtAuthorName.Text;
+            AStock.AuthorName = AuthorName;
             //capture the price
-            AStock.Price = Convert.ToDouble(txtPrice.Text);
+            AStock.Price = Convert.ToDouble(Price);
             //capture the publish date
-            AStock.PublishDate = Convert.ToDateTime("09/02/2021");
+            AStock.PublishDate = Convert.ToDateTime(PublishDate);
             AStock.Available = chkAvailable.Checked;
             clsStockCollection StockList = new clsStockCollection();
-            StockList.ThisStock = AStock;
+           StockList.ThisStock = AStock;
             StockList.Add();
-            Response.Redirect("StockList.aspx");
+            Response.Redirect("StockList.aspx"); 
+
+           /* if (ProductID == -1)
+            {
+                StockList.ThisStock = AStock;
+                StockList.Add();
+            }
+            else
+            {
+                StockList.ThisStock.Find(ProductID);
+                StockList.ThisStock = AStock;
+                StockList.Update();
+            }
+            
+            Response.Redirect("StockList.aspx");*/
 
         }
         else
@@ -77,10 +110,11 @@ public partial class _1_DataEntry : System.Web.UI.Page
         if (Found == true)
         {
             //display the values of the properties in the form
-            txtBookName.Text = AStock.BookName;
-            txtAuthorName.Text = AStock.AuthorName;
+            txtBookName.Text = AStock.BookName.TrimEnd();
+            txtAuthorName.Text = AStock.AuthorName.TrimEnd();
             txtPrice.Text = AStock.Price.ToString();
             txtPublishedDate.Text = AStock.PublishDate.ToString();
+            
         }
 
 
