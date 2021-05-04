@@ -132,5 +132,51 @@ namespace ClassLibrary
                 return false;
             }
         }
+
+        //function for the public validation method
+        public string Valid(string Name, string Email, string DOB, string Address)
+        {
+            String Error = "";
+
+            if (Name.Length == 0)
+            {
+                //record the error
+                Error = Error + "The name may not be blank : ";
+            }
+
+            if (Name.Length > 50)
+            {
+                //record the error
+                Error = Error + "The Name must be less than 50 Characters : ";
+            }
+
+            if (Email.Length == 0)
+            {
+                //record the error
+                Error = Error + "The email should not be blank : ";
+            }
+           
+            if (Email.Length > 50)
+            {
+                //record the error
+                Error = Error + "The email must be less than 50 Characters : ";
+            }
+
+            if (Address.Length == 0)
+            {
+                //record the error
+                Error = Error + "The address should not be blank : ";
+            }
+
+            if (Address.Length > 60)
+            {
+                //record the error
+                Error = Error + "The address must be less than 60 Characters : ";
+            }
+
+            return Error;
+
+        }
+
     }
 }
