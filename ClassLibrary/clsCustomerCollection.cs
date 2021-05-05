@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace ClassLibrary
@@ -19,7 +19,17 @@ namespace ClassLibrary
                 mCustomerList = value;
             }
         }
-        public clscustomer ThisCustomer { get; set; }
+        public clscustomer ThisCustomer
+        {
+            get
+            {
+                return mThisCustomer;
+            }
+            set
+            {
+                mThisCustomer = value;
+            }
+        }
         public int Count
         {
             get
@@ -28,7 +38,7 @@ namespace ClassLibrary
             }
             set
             {
-                //later
+
             }
         }
 
@@ -45,7 +55,7 @@ namespace ClassLibrary
             while (Index < RecordCount)
             {
                 clscustomer Acustomer = new clscustomer();
-                Acustomer.Registered = Convert.ToBoolean(DB.DataTable.Rows[Index]["True"]);
+                Acustomer.Registered = Convert.ToBoolean(DB.DataTable.Rows[Index]["Registered"]);
                 Acustomer.DOB = Convert.ToDateTime(DB.DataTable.Rows[Index]["DOB"]);
                 Acustomer.Name = Convert.ToString(DB.DataTable.Rows[Index]["Name"]);
                 Acustomer.Email = Convert.ToString(DB.DataTable.Rows[Index]["Email"]);
@@ -59,5 +69,4 @@ namespace ClassLibrary
 
         }
     }
-
 }
