@@ -68,5 +68,20 @@ namespace ClassLibrary
             }
 
         }
+
+        public int Add()
+        {
+            //adds a new record to the database based on the values of ThisStock
+            //connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            //set parameters for the stored procedure
+            DB.AddParameter("@Name", mThisCustomer.Name);
+            DB.AddParameter("@Email", mThisCustomer.Email);
+            DB.AddParameter("@DOB", mThisCustomer.DOB);
+            DB.AddParameter("@Address", mThisCustomer.Address);
+            DB.AddParameter("@Registered", mThisCustomer.Registered);
+            //execute the querry returnining the primary key value
+            return DB.Execute("sproc_tblCustomer_Insert");
+        }
     }
 }
