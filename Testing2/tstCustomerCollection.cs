@@ -84,5 +84,27 @@ namespace Testing2
 
             Assert.AreEqual(AllCustomers.Count, TestList.Count);
         }
+
+        [TestMethod]
+        public void AddMethodOK()
+        {
+            //create an instance fof the class we want to create 
+            clsCustomerCollection AllCustomers = new clsCustomerCollection();
+            //create some test data to assign to the property
+            clscustomer TestItem = new clscustomer();
+            Int32 Primarykey = 0;
+            TestItem.Registered = true;
+            TestItem.DOB = Convert.ToDateTime("16/08/1999");
+            TestItem.Name = "Rushil";
+            TestItem.Email = "Ramesh";
+            TestItem.Address = "60, Rainworth road, LE5 4QE";
+            TestItem.CustomerNo = 1;
+
+            AllCustomers.ThisCustomer = TestItem;
+            Primarykey = AllCustomers.Add();
+            TestItem.CustomerNo = Primarykey;
+            AllCustomers.ThisCustomer.Find(Primarykey);
+            Assert.AreEqual(AllCustomers.ThisCustomer, TestItem);
+        }
     }
 }
