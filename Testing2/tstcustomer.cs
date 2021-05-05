@@ -364,21 +364,6 @@ namespace Testing2
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
-        [TestMethod]
-        public void NameExtremeMax()
-        {
-            //create an instance of the class we want to create
-            clscustomer Acustomer = new clscustomer();
-            //string variable to store any error message
-            String Error = "";
-            //create some test data to pass to the method
-            string Name = ""; //this should fail
-            Name = Name.PadRight(500, 'a'); //this should fail
-            //invoke the method
-            Error = Acustomer.Valid(Name, Email, DOB, Address);
-            //test to see that the result is correct
-            Assert.AreNotEqual(Error, "");
-        }
 
 
         //email validations
@@ -448,7 +433,7 @@ namespace Testing2
             //string variable to store any error message
             String Error = "";
             //create some test data to pass to the method
-            string Email = ""; //this should be ok
+            string Email = "aaaaaa"; //this should be ok
             Email = Email.PadRight(50, 'a');
             //invoke the method
             Error = Acustomer.Valid(Name, Email, DOB, Address);
@@ -486,21 +471,7 @@ namespace Testing2
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
-        [TestMethod]
-        public void EmailExtremeMax()
-        {
-            //create an instance of the class we want to create
-            clscustomer Acustomer = new clscustomer();
-            //string variable to store any error message
-            String Error = "";
-            //create some test data to pass to the method
-            string Email = ""; //this should fail
-            Email = Email.PadRight(500, 'a'); //this should fail
-            //invoke the method
-            Error = Acustomer.Valid(Name, Email, DOB, Address);
-            //test to see that the result is correct
-            Assert.AreNotEqual(Error, "");
-        }
+
 
         //address validations
         [TestMethod]
@@ -569,7 +540,7 @@ namespace Testing2
             //string variable to store any error message
             String Error = "";
             //create some test data to pass to the method
-            string Address = ""; //this should be ok
+            string Address = "aaaaaa"; //this should be ok
             Address = Address.PadRight(60, 'a');
             //invoke the method
             Error = Acustomer.Valid(Name, Email, DOB, Address);
@@ -607,16 +578,102 @@ namespace Testing2
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
+
+
+        //DOB Validation
         [TestMethod]
-        public void AddressExtremeMax()
+        public void DOBExtremeMax()
+        {
+            //create an instance of the class we want to create
+            clscustomer Acustomer = new clscustomer();
+            //string variable to store any error message
+            String Error = "";
+            //create a variable to store the test date data
+            DateTime TestDate;
+            //set the date totodays date
+            TestDate = DateTime.Now.Date;
+            //change the date to whatever the date is plus 100 years
+            TestDate = TestDate.AddYears(100);
+            //convert the date variable to a string variable
+            string DOB = TestDate.ToString();
+            //invoke the method
+            Error = Acustomer.Valid(Name, Email, DOB, Address);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DOBMaxLessOne()
+        {
+            //create an instance of the class we want to create
+            clscustomer Acustomer = new clscustomer();
+            //string variable to store any error message
+            String Error = "";
+            //create a variable to store the test date data
+            DateTime TestDate;
+            //set the date totodays date
+            TestDate = DateTime.Now.Date;
+            //change the date to whatever the date is less 1 day
+            TestDate = TestDate.AddDays(-1);
+            //convert the date variable to a string variable
+            string DOB = TestDate.ToString();
+            //invoke the method
+            Error = Acustomer.Valid(Name, Email, DOB, Address);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DOBMax()
+        {
+            //create an instance of the class we want to create
+            clscustomer Acustomer = new clscustomer();
+            //string variable to store any error message
+            String Error = "";
+            //create a variable to store the test date data
+            DateTime TestDate;
+            //set the date totodays date
+            TestDate = DateTime.Now.Date;
+            //convert the date variable to a string variable
+            string DOB = TestDate.ToString();
+            //invoke the method
+            Error = Acustomer.Valid(Name, Email, DOB, Address);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DOBMaxPlusOne()
+        {
+            //create an instance of the class we want to create
+            clscustomer Acustomer = new clscustomer();
+            //string variable to store any error message
+            String Error = "";
+            //create a variable to store the test date data
+            DateTime TestDate;
+            //set the date totodays date
+            TestDate = DateTime.Now.Date;
+            //change the date to whatever the date is plus 1 day
+            TestDate = TestDate.AddDays(1);
+            //convert the date variable to a string variable
+            string DOB = TestDate.ToString();
+            //invoke the method
+            Error = Acustomer.Valid(Name, Email, DOB, Address);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+
+        [TestMethod]
+        public void DOBInvalidData()
         {
             //create an instance of the class we want to create
             clscustomer Acustomer = new clscustomer();
             //string variable to store any error message
             String Error = "";
             //create some test data to pass to the method
-            string Address = ""; //this should fail
-            Address = Address.PadRight(500, 'a'); //this should fail
+            string DOB = "This is not a date!"; //this should fail
+            Name = Name.PadRight(500, 'a'); //this should fail
             //invoke the method
             Error = Acustomer.Valid(Name, Email, DOB, Address);
             //test to see that the result is correct

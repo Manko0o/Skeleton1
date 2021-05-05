@@ -137,6 +137,7 @@ namespace ClassLibrary
         public string Valid(string Name, string Email, string DOB, string Address)
         {
             String Error = "";
+            DateTime DateTemp;
 
             if (Name.Length == 0)
             {
@@ -153,13 +154,29 @@ namespace ClassLibrary
             if (Email.Length == 0)
             {
                 //record the error
-                Error = Error + "The email should not be blank : ";
+                Error = Error + "The email may not be blank : ";
             }
-           
+
             if (Email.Length > 50)
             {
                 //record the error
                 Error = Error + "The email must be less than 50 Characters : ";
+            }
+
+            try
+            {
+                DateTemp = Convert.ToDateTime(DOB);
+                //check to see if the date is greater than today's date
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the future : ";
+                }
+            }
+            catch
+            {
+                //record the error
+                Error = Error + "The date was not a valid date: ";
             }
 
             if (Address.Length == 0)
@@ -173,6 +190,8 @@ namespace ClassLibrary
                 //record the error
                 Error = Error + "The address must be less than 60 Characters : ";
             }
+
+            
 
             return Error;
 
