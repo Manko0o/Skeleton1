@@ -95,5 +95,12 @@ namespace ClassLibrary
             DB.AddParameter("@Registered", mThisCustomer.Registered);
             DB.Execute("sproc_tblCustomer_Update");
         }
+
+        public void Delete()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@CustomerNo", mThisCustomer.CustomerNo);
+            DB.Execute("sproc_tblCustomer_Delete");
+        }
     }
 }
