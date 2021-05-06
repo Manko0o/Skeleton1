@@ -160,22 +160,46 @@ namespace Testing3
              Assert.IsFalse(Found);
              }
         [TestMethod]
-        public void ReportByProductID()
+        public void ReportByBookNameMethodOK()
         {
             clsStockCollection AllStocks = new clsStockCollection();
-            clsStockCollection FilteredProducts = new clsStockCollection();
-            FilteredProducts.ReportbyProduct(11);
-            Assert.AreEqual(AllStocks.Count, FilteredProducts.Count);
+            clsStockCollection FilteredBooks = new clsStockCollection();
+            FilteredBooks.ReportbyBookName("");
+            Assert.AreEqual(AllStocks.Count, FilteredBooks.Count);
 
         }
         [TestMethod]
-        public void ReportByProductIDNoneFoud()
+        public void ReportByBookNameNoneFound()
         {
-            clsStockCollection FilteredProducts = new clsStockCollection();
-            FilteredProducts.ReportbyProduct(11);
-            Assert.AreEqual(0, FilteredProducts.Count);
+            clsStockCollection FilteredBooks = new clsStockCollection();
+            FilteredBooks.ReportbyBookName("heyYou!");
+            Assert.AreEqual(0, FilteredBooks.Count);
         }
-      }
+        [TestMethod]
+        public void ReportByBookNameTestDataFound()
+        {
+            clsStockCollection FilterStocks = new clsStockCollection();
+            Boolean OK = true;
+            FilterStocks.ReportbyBookName("Wakanda");
+            if (FilterStocks.Count == 2)
+            {
+                if (FilterStocks.StockList[0].ProductID !=326 )
+                {
+                    OK = false;
+                }
+                if (FilterStocks.StockList[1].ProductID != 330)
+                {
+                    OK = false;
+                }
+            }
+            else
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+                }
+
+    }
    
     }
         
