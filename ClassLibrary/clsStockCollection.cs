@@ -31,8 +31,9 @@ namespace ClassLibrary
             //object for the data connection
             clsDataConnection DB = new clsDataConnection();
             DB.Execute("sproc_tblStockManagement_Selectall");
+            PopulateArray(DB);
             //get the count of records
-            RecordCount = DB.Count;
+           // RecordCount = DB.Count;
             //while there are records to process
             while (Index < RecordCount)
             {
@@ -115,12 +116,32 @@ namespace ClassLibrary
              DB.Execute("sproc_tblStockManagement_Delete");
         }
 
-        public void ReportbyProduct(Int32 ProductId)
-
+        public void ReportbyBookName(string BookName)
         {
             clsDataConnection DB = new clsDataConnection();
-            DB.AddParameter("@ProductID", ProductId);
-            DB.Execute("sproc_tblStockManagement_FilterByProductID");
+            DB.AddParameter("@BookName", BookName);
+            DB.Execute("sproc_tblStockManagement_FilterByBookName");
+            PopulateArray(DB);
+        }
+        void PopulateArray(clsDataConnection DB)
+        {
+            Int32 Index = 0;
+            Int32 RecordCount;
+            RecordCount = DB.Count;
+            mStockList = new List<clsStock>();
+
+            while (Index < RecordCount)
+            {
+                clsStock AStock = new clsStock();
+                AStock.Available = Convert.ToBoolean(DB.DataTable.Rows[Index]["Available"]);
+                AStock.ProductID = Convert.ToInt32(DB.DataTable.Rows[Index]["ProductID"]);
+                AStock.BookName = Convert.ToString(DB.DataTable.Rows[Index]["BookName"]);
+                AStock.AuthorName = Convert.ToString(DB.DataTable.Rows[Index]["AuthorName"]);
+                AStock.Price = Convert.ToDouble(DB.DataTable.Rows[Index]["Price"]);
+                AStock.PublishDate = Convert.ToDateTime(DB.DataTable.Rows[Index]["PublishDate"]);
+                mStockList.Add(AStock);
+                Index++;
+            }
         }
     }
     }

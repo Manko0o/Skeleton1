@@ -68,19 +68,19 @@ public partial class _1_DataEntry : System.Web.UI.Page
             StockList.Add();
             Response.Redirect("StockList.aspx"); 
 
-           /* if (ProductID == -1)
+            if (ProductID == "-1")
             {
                 StockList.ThisStock = AStock;
                 StockList.Add();
             }
             else
             {
-                StockList.ThisStock.Find(ProductID);
+                StockList.ThisStock.Find(Convert.ToInt32(ProductID));
                 StockList.ThisStock = AStock;
                 StockList.Update();
             }
             
-            Response.Redirect("StockList.aspx");*/
+            Response.Redirect("StockList.aspx");
 
         }
         else
