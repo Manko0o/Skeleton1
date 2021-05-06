@@ -50,29 +50,10 @@ namespace ClassLibrary
 
         public clsOrderCollection()
         {
-            Int32 Index = 0;
-            Int32 RecordCount = 0;
-
             clsDataConnection DB = new clsDataConnection();
             DB.Execute("sproc_tblOrderProcessing_SelectAll");
-            RecordCount = DB.Count;
-            while (Index < RecordCount)
-            {
-                clsOrder AnOrder = new clsOrder();
-                AnOrder.OrderNo = Convert.ToInt32(DB.DataTable.Rows[Index]["OrderNo"]);
-                AnOrder.BookName = Convert.ToString(DB.DataTable.Rows[Index]["BookName"]);
-                AnOrder.Quantity = Convert.ToInt32(DB.DataTable.Rows[Index]["Quantity"]);
-                AnOrder.OrderDate = Convert.ToDateTime(DB.DataTable.Rows[Index]["OrderDate"]);
-                AnOrder.Dispatched = Convert.ToBoolean(DB.DataTable.Rows[Index]["Dispatched"]);
-                mOrderList.Add(AnOrder);
-                Index++;
-            }
-
-
-
-
+            PopulateArray(DB);
             
-
         }
 
         public int Add()
@@ -104,5 +85,36 @@ namespace ClassLibrary
             DB.AddParameter("@OrderNo", mThisOrder.OrderNo);
             DB.Execute("sproc_tblOrderProcessing_Delete");
         }
+
+        public void ReportByBookName(String BookName)
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@BookName", BookName);
+            DB.Execute("sproc_tblOrderProcessing_FilterByBookName");
+            PopulateArray(DB);
+        }
+
+
+        void PopulateArray(clsDataConnection DB)
+        {
+            Int32 Index = 0;
+            Int32 RecordCount;
+            RecordCount = DB.Count;
+            mOrderList = new List<clsOrder>();
+            while (Index < RecordCount)
+            {
+                clsOrder AnOrder = new clsOrder();
+                AnOrder.OrderNo = Convert.ToInt32(DB.DataTable.Rows[Index]["OrderNo"]);
+                AnOrder.BookName = Convert.ToString(DB.DataTable.Rows[Index]["BookName"]);
+                AnOrder.Quantity = Convert.ToInt32(DB.DataTable.Rows[Index]["Quantity"]);
+                AnOrder.OrderDate = Convert.ToDateTime(DB.DataTable.Rows[Index]["OrderDate"]);
+                AnOrder.Dispatched = Convert.ToBoolean(DB.DataTable.Rows[Index]["Dispatched"]);
+                mOrderList.Add(AnOrder);
+                Index++;
+            }
+
+        }
     }
-    }
+}
+    
+    

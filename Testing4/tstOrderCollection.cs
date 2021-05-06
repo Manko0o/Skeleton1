@@ -104,17 +104,19 @@ namespace Testing4
             AllOrder.ThisOrder.Find(PrimaryKey);
             Assert.AreEqual(AllOrder.ThisOrder, TestItem);
         }
-
+        [TestMethod]
         public void UpdateMethodOK()
         {
             clsOrderCollection AllOrder = new clsOrderCollection();
             clsOrder TestItem = new clsOrder();
             Int32 PrimaryKey = 0;
+
             TestItem.BookName = "The Good Times";
             TestItem.Quantity = 2;
             TestItem.OrderDate = DateTime.Now.Date;
             TestItem.Price = 20;
             TestItem.Dispatched = true;
+
             AllOrder.ThisOrder = TestItem;
             PrimaryKey = AllOrder.Add();
 
@@ -124,6 +126,7 @@ namespace Testing4
             TestItem.OrderDate = DateTime.Now.Date;
             TestItem.Price = 10;
             TestItem.Dispatched = false;
+
             AllOrder.ThisOrder = TestItem;
             AllOrder.Update();
             AllOrder.ThisOrder.Find(PrimaryKey);
@@ -161,6 +164,49 @@ namespace Testing4
             AllOrder.Delete();
             Boolean Found = AllOrder.ThisOrder.Find(PrimaryKey);
             Assert.IsFalse(Found);
+        }
+
+
+
+        [TestMethod]
+        public void ReportbyBookNameMethodOK()
+        {
+            clsOrderCollection AllOrder = new clsOrderCollection();
+            clsOrderCollection FilteredBookName = new clsOrderCollection();
+            FilteredBookName.ReportByBookName("");
+            Assert.AreEqual(AllOrder.Count, FilteredBookName.Count);
+        }
+
+        [TestMethod]
+        public void ReportbyBookNameNoneFound()
+        {
+           clsOrderCollection FilteredBookName = new clsOrderCollection();
+            FilteredBookName.ReportByBookName("aaaaaaaaaaaaaaaaaaaaaaaa");
+            Assert.AreEqual(0, FilteredBookName.Count);
+        }
+
+        [TestMethod]
+        public void ReportByBookNameDataFound()
+        {
+            clsOrderCollection FilteredOrder = new clsOrderCollection();
+            Boolean OK = true;
+            FilteredOrder.ReportByBookName("aaaaaaaaaaaaaaaaaaaaaaaaaa");
+            if (FilteredOrder.Count == 2)
+            {
+                if (FilteredOrder.OrderList[0].OrderNo != 1)
+                {
+                    OK = false;
+                }
+                if (FilteredOrder.OrderList[1].OrderNo != 2)
+                {
+                    OK = false;
+                }
+            }
+            else
+            {
+                OK = false;
+            }
+            Assert.IsFalse(OK);
         }
     }
 }
