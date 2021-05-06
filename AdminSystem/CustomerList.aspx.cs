@@ -14,6 +14,7 @@ public partial class _1_List : System.Web.UI.Page
         {
 
             {
+
                 DisplayCustomers();
             }
         }
@@ -31,6 +32,39 @@ public partial class _1_List : System.Web.UI.Page
     protected void btnAdd_Click(object sender, EventArgs e)
     {
         Session["CustomerNo"] = -1;
-        Response.Redirect("Acustomer.aspx");
+        Response.Redirect("CustomerDataEntry.aspx");
+    }
+
+    protected void btnDelete_Click(object sender, EventArgs e)
+    {
+        {
+            Int32 CustomerNo;
+            if (lstCustomerList.SelectedIndex != -1)
+            {
+                CustomerNo = Convert.ToInt32(lstCustomerList.SelectedValue);
+                Session["ProductID"] = CustomerNo;
+                Response.Redirect("CustomerConfirmDelete.aspx");
+            }
+            else
+            {
+                lstCustomerList.Text = "Please select a record to delete from the list";
+            }
+        }
+    }
+
+    protected void btnEdit_Click(object sender, EventArgs e)
+    {
+        Int32 CustomerNo;
+        if (lstCustomerList.SelectedIndex != -1)
+        {
+            CustomerNo = Convert.ToInt32(lstCustomerList.SelectedValue);
+            Session["CustomerNo"] = CustomerNo;
+            Response.Redirect("CustomerDataEntry.aspx");
+
+        }
+        else
+        {
+            lstCustomerList.Text = "Please select a record, so that it can be edited from the list";
+        }
     }
 }
