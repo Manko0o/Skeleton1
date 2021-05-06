@@ -117,11 +117,6 @@ namespace ClassLibrary
             }
         }
 
-        public void Find(string orderNo)
-        {
-            throw new NotImplementedException();
-        }
-
         private int mOrderNo;
 
 

@@ -25,7 +25,8 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
         clsOrderCollection OrderBook = new clsOrderCollection();
         OrderBook.ThisOrder.Find(OrderNo);
-        txtBookName.Text = OrderBook.ThisOrder.BookName.ToString();
+        txtOrderNo.Text = OrderBook.ThisOrder.OrderNo.ToString();
+        txtBookName.Text = OrderBook.ThisOrder.BookName;
         txtQuantity.Text = OrderBook.ThisOrder.Quantity.ToString();
         txtOrderDate.Text = OrderBook.ThisOrder.OrderDate.ToString();
         txtPrice.Text = OrderBook.ThisOrder.Price.ToString();
@@ -40,7 +41,6 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //create a new instance of clsOrder
         clsOrder AnOrder = new clsOrder();
 
-        string OrderNo = txtOrderNo.Text;
         string BookName = txtBookName.Text;
         string Quantity = txtQuantity.Text;
         string OrderDate = txtOrderDate.Text;
@@ -51,7 +51,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
         {
 
-            AnOrder.OrderNo = Convert.ToInt32(OrderNo);
+            AnOrder.OrderNo = OrderNo;
             AnOrder.BookName = BookName;
             AnOrder.Quantity = Convert.ToInt32(Quantity);
             AnOrder.OrderDate = Convert.ToDateTime(OrderDate);
@@ -59,7 +59,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AnOrder.Dispatched = chkDispatched.Checked;
 
             clsOrderCollection OrderList = new clsOrderCollection();
-            if (OrderNo == "-1")
+            if (OrderNo == -1)
             {
 
                 OrderList.ThisOrder = AnOrder;
@@ -70,7 +70,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             else
             {
 
-                OrderList.ThisOrder.Find(OrderNo);
+                OrderList.ThisOrder.Find(Convert.ToInt32(OrderNo));
                 OrderList.ThisOrder = AnOrder;
                 OrderList.Update();
 
@@ -129,5 +129,10 @@ protected void txtOrderNo_TextChanged(object sender, EventArgs e)
 
 
 
-    
+
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("OrdersList.aspx");
+    }
 }
