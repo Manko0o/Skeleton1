@@ -7,11 +7,8 @@ using System.Web.UI.WebControls;
 
 public partial class _1_ConfirmDelete : System.Web.UI.Page
 {
-
     protected void Page_Load(object sender, EventArgs e)
     {
-
-
 
     }
 }

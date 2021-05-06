@@ -106,34 +106,5 @@ namespace Testing2
             AllCustomers.ThisCustomer.Find(Primarykey);
             Assert.AreEqual(AllCustomers.ThisCustomer, TestItem);
         }
-
-        [TestMethod]
-        public void UpdateMethodOK()
-        {
-            clsCustomerCollection AllCustomers = new clsCustomerCollection();
-            clscustomer TestItem = new clscustomer();
-            Int32 PrimaryKey = 0;
-            TestItem.Registered = true;
-            TestItem.DOB = Convert.ToDateTime("16/08/1999");
-            TestItem.Name = "Rushil";
-            TestItem.Email = "Ramesh";
-            TestItem.Address = "60, Rainworth road, LE5 4QE";
-            TestItem.CustomerNo = 1;
-            AllCustomers.ThisCustomer = TestItem;
-            PrimaryKey = AllCustomers.Add();
-            TestItem.CustomerNo = PrimaryKey;
-
-            TestItem.Registered = false;
-            TestItem.DOB = Convert.ToDateTime("17/04/2000");
-            TestItem.Name = "Stan";
-            TestItem.Email = "Lee";
-            TestItem.Address = "30, Worth road, LE5 5UE";
-            TestItem.CustomerNo = 10;
-
-            AllCustomers.ThisCustomer = TestItem;
-            AllCustomers.Update();
-            AllCustomers.ThisCustomer.Find(PrimaryKey);
-            Assert.AreEqual(AllCustomers.ThisCustomer, TestItem);
-        }
     }
 }
