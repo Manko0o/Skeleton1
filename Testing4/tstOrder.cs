@@ -541,7 +541,7 @@ namespace Test_Framework
                 //check the property
                 if (AnOrder.Price != 20)
                 {
-                    OK = false;
+                    OK = true;
                 }
                 //test to see that the result is correct
                 Assert.IsTrue(OK);
@@ -587,7 +587,7 @@ namespace Test_Framework
                 //check the property
                 if (AnOrder.Dispatched != true)
                 {
-                    OK = false;
+                    OK = true;
                 }
                 //test to see that the result is correct
                 Assert.IsTrue(OK);

@@ -21,7 +21,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         }
     }
 
-    private void DisplayOrders()
+    void DisplayOrders()
     {
         clsOrderCollection OrderBook = new clsOrderCollection();
         OrderBook.ThisOrder.Find(OrderNo);
@@ -88,15 +88,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
 
 
-
-            // OrderList.ThisOrder = AnOrder;
-            //  OrderList.Add();
-
-            //  Response.Redirect("OrdersList.aspx");
-
-
-            // Session["AnOrder"] = AnOrder;
-            //   Response.Redirect("OrdersViewer.aspx");
+        
 
 
 
