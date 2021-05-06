@@ -89,6 +89,11 @@ namespace ClassLibrary
             }
         }
 
+        public void Find(string customerNo)
+        {
+            throw new NotImplementedException();
+        }
+
         //private data member for the Name property
         private bool mRegistered;
         //Name public property
