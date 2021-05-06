@@ -137,5 +137,26 @@ namespace Testing2
             Assert.AreEqual(AllCustomers.ThisCustomer, TestItem);
         }
 
+        [TestMethod]
+        public void DeleteMethodOK()
+        {
+            clsCustomerCollection AllCustomers = new clsCustomerCollection();
+            clscustomer TestItem = new clscustomer();
+            Int32 PrimaryKey = 0;
+            TestItem.Registered = true;
+            TestItem.DOB = Convert.ToDateTime("16/08/1999");
+            TestItem.Name = "Rushil";
+            TestItem.Email = "Ramesh";
+            TestItem.Address = "60, Rainworth road, LE5 4QE";
+            TestItem.CustomerNo = 1;
+            AllCustomers.ThisCustomer = TestItem;
+            PrimaryKey = AllCustomers.Add();
+            TestItem.CustomerNo = PrimaryKey;
+            AllCustomers.ThisCustomer.Find(PrimaryKey);
+            AllCustomers.Delete();
+            Boolean Found = AllCustomers.ThisCustomer.Find(PrimaryKey);
+            Assert.IsFalse(Found);
+        }
+
     }
 }
