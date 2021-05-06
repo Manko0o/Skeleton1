@@ -108,5 +108,106 @@ namespace Testing1
             Assert.AreEqual(AllStaff.ThisStaff, TestItem);
         }
 
+        [TestMethod]
+        public void DeleteMethodOK()
+        {
+            clsStaffCollection AllStaff = new clsStaffCollection();
+
+            clsStaff TestItem = new clsStaff();
+            Int32 PrimaryKey = 0;
+            TestItem.Availability = true;
+            TestItem.DateofBirth = Convert.ToDateTime("15/01/2001");
+            TestItem.Name = "Filip";
+            TestItem.Surname = "Kobeszko";
+            TestItem.PhoneNumber = "07387666666";
+            TestItem.StaffID = 1;
+
+
+            AllStaff.ThisStaff = TestItem;
+            PrimaryKey = AllStaff.Add();
+            TestItem.StaffID = PrimaryKey;
+            AllStaff.ThisStaff.Find(PrimaryKey);
+            AllStaff.Delete();
+            Boolean Found = AllStaff.ThisStaff.Find(PrimaryKey);
+            Assert.IsFalse(Found);
+        }
+
+        [TestMethod]
+        public void UpdateMethodOK()
+        {
+            clsStaffCollection AllStaff = new clsStaffCollection();
+
+            clsStaff TestItem = new clsStaff();
+            Int32 PrimaryKey = 0;
+
+            TestItem.StaffID = 1;
+            TestItem.Name = "Filip";
+            TestItem.Surname = "Kobeszko";
+            TestItem.DateofBirth = Convert.ToDateTime("15/01/2001");
+            TestItem.PhoneNumber = "07387666666";
+            TestItem.Availability = true;
+
+
+            AllStaff.ThisStaff = TestItem;
+            PrimaryKey = AllStaff.Add();
+
+            TestItem.StaffID = PrimaryKey;
+            TestItem.Name = "Oskar";
+            TestItem.Surname = "Karcz";
+            TestItem.DateofBirth = Convert.ToDateTime("28/04/2001");
+            TestItem.PhoneNumber = "07387444666";
+            TestItem.Availability = false;
+
+            AllStaff.ThisStaff = TestItem;
+            AllStaff.Update();
+            AllStaff.ThisStaff.Find(PrimaryKey);
+
+            Assert.AreEqual(AllStaff.ThisStaff, TestItem);
+        }
+
+        [TestMethod]
+        public void ReportbySurnameMethodOK()
+        {
+            clsStaffCollection AllStaff = new clsStaffCollection();
+            clsStaffCollection FilteredSurname = new clsStaffCollection();
+            FilteredSurname.ReportBySurname("");
+            Assert.AreEqual(AllStaff.Count, FilteredSurname.Count);
+
+        }
+
+        [TestMethod]
+        public void ReportbySurnameNoneFound()
+        {
+            clsStaffCollection FilteredSurname = new clsStaffCollection();
+            FilteredSurname.ReportBySurname("abcdefghijklmnopqrstuvwxyz");
+            Assert.AreEqual(0, FilteredSurname.Count);
+
+        }
+
+        [TestMethod]
+        public void ReportbySurnameDataFound()
+        {
+            clsStaffCollection FilteredSurname = new clsStaffCollection();
+            Boolean OK = true;
+            FilteredSurname.ReportBySurname("abcdefghijklmnopqrstuvwxyz");
+            if (FilteredSurname.Count == 2)
+            {
+                if (FilteredSurname.StaffList[0].StaffID != 1)
+                {
+                    OK = false;
+                }
+                if (FilteredSurname.StaffList[1].StaffID != 2)
+                {
+                    OK = false;
+                }
+            }
+            else
+            {
+                OK = false;
+            }
+            Assert.IsFalse(OK);
+            
+
+        }
     }
 }
