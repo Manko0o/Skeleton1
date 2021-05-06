@@ -22,4 +22,9 @@ public partial class DeleteOrder : System.Web.UI.Page
         Response.Redirect("OrdersList.aspx");
 
     }
+
+    protected void btnNo_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("OrdersList.aspx");
+    }
 }
