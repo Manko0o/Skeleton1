@@ -197,7 +197,7 @@ namespace Testing2
             {
                 OK = false;
             }
-            Assert.IsTrue(OK);
+            Assert.IsFalse(OK);
         }
 
     }
