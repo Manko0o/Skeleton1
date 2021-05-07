@@ -246,7 +246,7 @@ namespace Testing2
                 OK = false;
             }
             //test to see if the result is true
-            Assert.IsTrue(OK);
+            Assert.IsFalse(OK);
         }
 
         [TestMethod]
