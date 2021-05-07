@@ -38,7 +38,6 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //create a new instance of clscustomer
         clscustomer Acustomer = new clscustomer();
         //capture the details
-        string CustomerNo = txtCustomerNo.Text;
         string Name = txtName.Text;
         string Email = txtEmail.Text;
         string DOB = txtDOB.Text;
@@ -57,14 +56,14 @@ public partial class _1_DataEntry : System.Web.UI.Page
             CustomerList.ThisCustomer = Acustomer;
             CustomerList.Add();
             Response.Redirect("CustomerList.aspx");
-            if (CustomerNo == "-1")
+            if (CustomerNo == -1)
             {
                 CustomerList.ThisCustomer = Acustomer;
                 CustomerList.Add();
             }
             else
             {
-                CustomerList.ThisCustomer.Find(Convert.ToInt32(CustomerNo));
+                CustomerList.ThisCustomer.Find(CustomerNo);
                 CustomerList.ThisCustomer = Acustomer;
                 CustomerList.Update();
             }
