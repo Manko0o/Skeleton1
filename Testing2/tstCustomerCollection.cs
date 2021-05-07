@@ -172,7 +172,7 @@ namespace Testing2
         {
             clsCustomerCollection FilteredCustomers = new clsCustomerCollection();
             FilteredCustomers.ReportByName("Alexa");
-            Assert.AreEqual(0, FilteredCustomers.Count);
+            Assert.AreEqual(10, FilteredCustomers.Count);
         }
 
         [TestMethod]
