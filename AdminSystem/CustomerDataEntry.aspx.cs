@@ -54,6 +54,9 @@ public partial class _1_DataEntry : System.Web.UI.Page
             Acustomer.Address = Address;
             Acustomer.Registered = chkRegistered.Checked;
             clsCustomerCollection CustomerList = new clsCustomerCollection();
+            CustomerList.ThisCustomer = Acustomer;
+            CustomerList.Add();
+            Response.Redirect("CustomerList.aspx");
             if (CustomerNo == "-1")
             {
                 CustomerList.ThisCustomer = Acustomer;
