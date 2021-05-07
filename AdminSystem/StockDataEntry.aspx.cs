@@ -8,7 +8,7 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
-    /*Int32 ProductID;
+    Int32 ProductID;
     protected void Page_Load(object sender, EventArgs e)
     {
         ProductID = Convert.ToInt32(Session["ProductID"]);
@@ -19,7 +19,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
                 DisplayStocks();
             }
         }
-    }
+    } 
     
     void DisplayStocks()
     {
@@ -31,7 +31,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         txtPrice.Text = Stock.ThisStock.Price.ToString();
         txtPublishedDate.Text = Stock.ThisStock.PublishDate.ToString();
     }
-    */
+    
     protected void btnOK_Click(object sender, EventArgs e)
     {
         //create a new instance of clsStock

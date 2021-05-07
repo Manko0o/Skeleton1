@@ -117,11 +117,11 @@ namespace Testing3
             clsStock TestItem = new clsStock();
             Int32 Primarykey = 0;
             TestItem.Available = true;
-            TestItem.ProductID = 1;
-            TestItem.BookName = "Unfinished";
-            TestItem.AuthorName = "Priyanka Chopra";
-            TestItem.Price = 11;
-            TestItem.PublishDate = Convert.ToDateTime("09/02/2021");
+            TestItem.ProductID = 2;
+            TestItem.BookName = "Riverdale";
+            TestItem.AuthorName = "Madeline Cooper";
+            TestItem.Price = 7;
+            TestItem.PublishDate = Convert.ToDateTime("20/11/2004");
 
             AllStocks.ThisStock = TestItem;
             Primarykey = AllStocks.Add();
@@ -129,9 +129,9 @@ namespace Testing3
             AllStocks.ThisStock.Find(Primarykey);
             //modify the data
             TestItem.Available = false;
-            TestItem.ProductID = 11;
-            TestItem.BookName = "Becoming";
-            TestItem.AuthorName = "Michelle Obama";
+            TestItem.ProductID = 18;
+            TestItem.BookName = "Another book";
+            TestItem.AuthorName = "Another author";
             TestItem.Price = 17;
             TestItem.PublishDate = Convert.ToDateTime("21/05/2011");
             AllStocks.ThisStock = TestItem;

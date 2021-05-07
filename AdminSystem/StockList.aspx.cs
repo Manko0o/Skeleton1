@@ -11,9 +11,9 @@ public partial class _1_List : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         ProductID = Convert.ToInt32(Session["ProductID"]);
-        if (IsPostBack == false)
+       
         {
-
+            if (IsPostBack == false)
             {
                 //update the list box
                 DisplayStocks();
@@ -25,6 +25,7 @@ public partial class _1_List : System.Web.UI.Page
     {
         clsStockCollection Stock = new clsStockCollection();
         Stock.ThisStock.Find(Convert.ToInt32(ProductID));
+        
         lstStocks.DataSource = Stock.StockList;
         lstStocks.DataValueField = "ProductID";
         lstStocks.DataTextField = "BookName";

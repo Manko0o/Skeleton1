@@ -52,6 +52,7 @@ namespace ClassLibrary
                 Index++;
             }
         }
+
         public clsStock ThisStock
         {
             get
@@ -91,7 +92,7 @@ namespace ClassLibrary
             //execute the querry returnining the primary key value
             return DB.Execute("sproc_tblStockManagement_Insert");
         }
-        public int Update()
+        public void Update()
         {
             //Updates an existing record to  the database based on the values of ThisStock
             //connect to the database
@@ -104,7 +105,7 @@ namespace ClassLibrary
             DB.AddParameter("@Price", mThisStock.Price);
             DB.AddParameter("@PublishDate", mThisStock.PublishDate);
             //execute the querry returnining the primary key value
-            return DB.Execute("sproc_tblStockManagement_Update");
+           DB.Execute("sproc_tblStockManagement_Update");
         }
 
         public void Delete()
